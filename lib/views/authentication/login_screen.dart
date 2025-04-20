@@ -1,3 +1,5 @@
+import 'package:charity_app/common_widgets/our_button.dart';
+import 'package:charity_app/common_widgets/strings.dart';
 import 'package:charity_app/views/authentication/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:charity_app/consts/colors.dart';
@@ -22,7 +24,7 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 // Charity Text (Yellow)
-                Text(
+                const Text(
                   "Charity",
                   style: TextStyle(
                     fontSize: 40,
@@ -106,27 +108,20 @@ class LoginScreen extends StatelessWidget {
                           ),
 
                           // Login Button
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: yellowColor,
-                              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 80),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            onPressed: () {
-                              // Login Functionality
-                            },
-                            child: const Text(
-                              "LOG IN",
-                              style: TextStyle(color: Colors.white, fontSize: 16),
-                            ),
-                          ),
+       ourButton(
+           onPress: (){
+
+           },
+           color: yellowColor,
+           textColor: whiteColor,
+           title: login)
                         ],
                       ),
                     ),
                   ],
                 ),
+
+
 
                 const SizedBox(height: 20),
 

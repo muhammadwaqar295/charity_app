@@ -1,7 +1,5 @@
 .dart_tool
 build
-pubspec.yaml
-pubspec.lock
 .idea
 .flutter-plugins
 .flutter-plugins-dependencies
@@ -28,7 +26,6 @@ pubspec.lock
 # Flutter/Dart/Pub related
 **/doc/api/
 .dart_tool/
-.flutter-plugins
 .packages
 .pub-cache/
 .pub/

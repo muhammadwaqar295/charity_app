@@ -1,5 +1,6 @@
-import 'package:charity_app/views/authentication/login_screen.dart';
+
 import 'package:flutter/material.dart';
+import 'package:fyp/views/authentication/login_screen.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,6 +1,7 @@
 
+import 'package:charity_app/views/authentication/signup_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp/views/authentication/signup_screen.dart';
+
 
 import '../../common_widgets/our_button.dart';
 import '../../common_widgets/strings.dart';

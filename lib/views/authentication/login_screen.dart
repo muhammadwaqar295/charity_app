@@ -1,9 +1,10 @@
-import 'package:fyp/consts/consts.dart';
-import 'package:fyp/reusable_widgets/our_text.dart';
-import 'package:fyp/reusable_widgets/our_textField.dart';
-import 'package:fyp/views/authentication/signup_screen.dart';
+import 'package:charity_app/consts/colors.dart';
+import 'package:charity_app/views/authentication/signup_screen.dart';
 
+import '../../consts/consts.dart';
 import '../../reusable_widgets/our_button.dart';
+import '../../reusable_widgets/our_text.dart';
+import '../../reusable_widgets/our_textField.dart';
 
 
 class LoginScreen extends StatelessWidget {

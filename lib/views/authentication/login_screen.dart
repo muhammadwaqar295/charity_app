@@ -1,11 +1,7 @@
+import 'package:fyp/consts/consts.dart';
+import 'package:fyp/views/authentication/signup_screen.dart';
 
-import 'package:charity_app/views/authentication/signup_screen.dart';
-import 'package:flutter/material.dart';
-
-
-import '../../common_widgets/our_button.dart';
-import '../../common_widgets/strings.dart';
-import '../../consts/colors.dart';
+import '../../reusable_widgets/our_button.dart';
 
 
 class LoginScreen extends StatelessWidget {

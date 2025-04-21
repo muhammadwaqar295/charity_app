@@ -1,4 +1,5 @@
 import 'package:fyp/consts/consts.dart';
+import 'package:fyp/reusable_widgets/our_text.dart';
 import 'package:fyp/views/authentication/signup_screen.dart';
 
 import '../../reusable_widgets/our_button.dart';
@@ -23,24 +24,19 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 // Charity Text (Yellow)
-                const Text(
-                  "Charity",
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
+                ourText(
                     color: yellowColor,
-                  ),
-                ),
+                    title: "Charity",
+                    textSize: 40),
+
+
 
                 // Sign In Text (Black)
-                const Text(
-                  "Sign In",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+                ourText(
                     color: Colors.black,
-                  ),
-                ),
+                    title: "Sign In",
+                    textSize: 22),
+
 
                 const SizedBox(height: 20,),
 

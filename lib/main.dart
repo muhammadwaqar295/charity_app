@@ -1,9 +1,4 @@
-
-
-
 import 'package:charity_app/views/authentication/login_screen.dart';
-
-
 import 'consts/consts.dart';
 
 void main() {

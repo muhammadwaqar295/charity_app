@@ -26,3 +26,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
+/*
+
+
+git add .
+git commit -m "Your message about the update"
+git push origin main
+git push waqar main
+
+
+*/
+
+

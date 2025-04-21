@@ -1,5 +1,6 @@
 import 'package:fyp/consts/consts.dart';
 import 'package:fyp/reusable_widgets/our_text.dart';
+import 'package:fyp/reusable_widgets/our_textField.dart';
 import 'package:fyp/views/authentication/signup_screen.dart';
 
 import '../../reusable_widgets/our_button.dart';
@@ -63,30 +64,24 @@ class LoginScreen extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+
                           // Email TextField
-                          TextField(
-                            decoration: InputDecoration(
-                              labelText: "Email Address",
-                              hintText: "Enter email Address",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
+                          ourTextField(
+                            title: "Email Address",
+                            hint: "Enter email Address",
+                            isPass: false
                           ),
 
                           const SizedBox(height: 15),
 
                           // Password TextField
-                          TextField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              labelText: "Password",
-                              hintText: "Enter Password",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                          ),
+                  ourTextField(
+                    title: "Password",
+                    hint: "Enter Password",
+                    isPass: true
+                  ),
+
+
 
                           // Forget Password Right-Aligned
                           Align(

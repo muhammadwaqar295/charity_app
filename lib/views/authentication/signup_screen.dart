@@ -1,3 +1,8 @@
+import 'package:charity_app/consts/colors.dart';
+import 'package:charity_app/reusable_widgets/our_button.dart';
+import 'package:charity_app/reusable_widgets/our_button2.dart';
+import 'package:charity_app/reusable_widgets/our_text.dart';
+import 'package:charity_app/reusable_widgets/our_textField.dart';
 import 'package:flutter/material.dart';
 
 
@@ -26,24 +31,18 @@ class _SignupScreenState extends State<SignupScreen> {
 
         
                 // Charity Text (Yellow)
-                Text(
-                  "Charity",
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.amber[700],
-                  ),
-                ),
+                ourText(
+                    color: yellowColor,
+                    title:  "Charity",
+                    textSize: 40),
+
         
                 // Sign Up Text (Black)
-                const Text(
-                  "Sign Up",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
+                ourText(
+                    color: blackColor,
+                    title: "Sign Up",
+                    textSize: 22),
+
 
 
         const SizedBox(height: 20,),
@@ -139,80 +138,53 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
         
                           const SizedBox(height: 15),
-        
+
                           // Full Name TextField
-                          TextField(
-                            decoration: InputDecoration(
-                              labelText: "Full Name",
-                              hintText: "Enter Full Name",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
+                          ourTextField(
+                              title: "Full Name",
+                              hint: "Enter Full Name",
+                              isPass: false
+
                           ),
+
         
                           const SizedBox(height: 15),
         
                           // Password TextField
-                          TextField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              labelText: "Password",
-                              hintText: "Enter Password",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
+                          ourTextField(
+                            title: "Password",
+                            hint: "Enter Password",
+                            isPass: true
                           ),
+
         
-                          const SizedBox(height: 15),
+                          const SizedBox(height: 20),
         
                           // Email TextField
-                          TextField(
-                            decoration: InputDecoration(
-                              labelText: "Email Address",
-                              hintText: "Enter email Address",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
+                          ourTextField(
+                              title: "Email Address",
+                              hint: "Enter email Address",
+                              isPass: false
                           ),
+
         
                           const SizedBox(height: 15),
         
                           // Phone TextField
-                          TextField(
-                            keyboardType: TextInputType.phone,
-                            decoration: InputDecoration(
-                              labelText: "Phone No.",
-                              hintText: "Enter Phone No.",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
+                          ourTextField(
+                              title: "Phone No.",
+                              hint: "Enter Phone No.",
+                              isPass: false
                           ),
-        
+
                           const SizedBox(height: 20),
-        
+
                           // Sign Up Button
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.amber[700],
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 12, horizontal: 80),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            onPressed: () {
-                              // Sign Up functionality
-                            },
-                            child: const Text(
-                              "SIGNUP",
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 16),
-                            ),
-                          ),
+                          ourButton(
+                              onPress: (){},
+                              color: yellowColor,
+                              textColor: whiteColor,
+                              title: "SIGN UP"),
                         ],
                       ),
                     ),
@@ -222,23 +194,13 @@ class _SignupScreenState extends State<SignupScreen> {
                 const SizedBox(height: 20),
         
                 // Sign In Button
-                OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 12, horizontal: 80),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    side: const BorderSide(color: Colors.black),
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context); // Go back to login
-                  },
-                  child: const Text(
-                    "SIGN IN",
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                  ),
-                ),
+                ourButton2(
+                    onPress: (){
+                      Navigator.pop(context);
+                    },
+                    title: "SIGN IN"),
+
+
               ],
             ),
           ),

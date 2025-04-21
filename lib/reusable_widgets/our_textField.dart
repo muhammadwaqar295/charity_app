@@ -1,13 +1,9 @@
-
-
- import 'package:flutter/cupertino.dart';
-
 import '../consts/consts.dart';
 
 Widget ourTextField({
  String? title,
  String? hint,
- controller,isPass
+  bool isPass = false,
  }){
    return   TextField(
    obscureText: isPass,

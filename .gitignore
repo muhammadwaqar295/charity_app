@@ -2,7 +2,6 @@
 build
 .idea
 pubspec.lock
-pubspec.yaml
 .flutter-plugins
 .flutter-plugins-dependencies
 # Miscellaneous

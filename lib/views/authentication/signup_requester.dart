@@ -1,3 +1,9 @@
+import 'package:charity_app/reusable_widgets/ourBackButton.dart';
+import 'package:charity_app/reusable_widgets/ourMultiLineTextField.dart';
+import 'package:charity_app/reusable_widgets/our_button.dart';
+import 'package:charity_app/reusable_widgets/our_text.dart';
+import 'package:charity_app/reusable_widgets/our_textField.dart';
+
 import '../../consts/consts.dart';
 
 class SignupRequester extends StatefulWidget {
@@ -11,22 +17,17 @@ class _SignupRequesterState extends State<SignupRequester> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: whiteColor,
       appBar: AppBar(
-        backgroundColor: Colors.amber[700],
+        backgroundColor: yellowColor,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text(
-          becomeRequester,
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-        ),
+
+        leading:ourBackButton(context,iconColor: blackColor),
+
+        title: ourText(
+            color: blackColor,
+            title: becomeRequester,
+            textSize: 20)
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -37,78 +38,47 @@ class _SignupRequesterState extends State<SignupRequester> {
             children: [
               const SizedBox(height: 30),
 
-
-              TextField(
-                decoration: InputDecoration(
-                  labelText: name,
-                  hintText: nameHint,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+                   //name TextField
+              ourTextField(
+                title: name,
+                hint: nameHint,
+                isPass: false,
               ),
+
               const SizedBox(height: 15),
 
               // Password TextField
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: password,
-                  hintText: passwordHint,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+              ourTextField(
+                title:password
+                  ,hint: passwordHint,
+                  isPass: true
               ),
+
               const SizedBox(height: 15),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: email,
-                  hintText: emailHint,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+
+              // Email TextField
+              ourTextField(
+                title: email,
+                hint: emailHint,
+                isPass: false
               ),
+
               const SizedBox(height: 15),
+
               // Phone TextField
-              TextField(
-                keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                  labelText: phone,
-                  hintText: phoneHint,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+
+              ourTextField(
+                title:phone,
+                hint: phoneHint,
+                isPass: false
               ),
+
 
               const SizedBox(height: 15),
-// Phone TextField
-              SizedBox(
-                height: 200,
-                child: TextField(
-                  keyboardType: TextInputType.text,
-                  maxLines: null,
-                  expands: true,
-                  style: const TextStyle(fontSize: 18),
-                  textAlignVertical: TextAlignVertical.top, // Center text vertically
-                  decoration: InputDecoration(
-                    labelText: addDetails,
-                    alignLabelWithHint: true,
-                    hintText: addDetailsHint,
-                    hintStyle: const TextStyle(
-                      fontSize: 18,
-                      height: 3, // Adjust this to center better if needed
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-              ),
 
+         ourMultilineTextField(
+             title: addDetails,
+             hint: addDetailsHint),
 
 
 
@@ -118,28 +88,13 @@ class _SignupRequesterState extends State<SignupRequester> {
 
               // Submit Button
               Center(
-                child: SizedBox(
-                  width: 200,
-                  height: 40,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.amber[700],
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                     submit,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
+                child: ourButton(
+                    onPress: (){},
+                    color: yellowColor,
+                    textColor: whiteColor,
+                    title: submit),
               ),
+
             ],
           ),
         ),

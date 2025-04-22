@@ -1,9 +1,13 @@
 import 'package:charity_app/consts/colors.dart';
+import 'package:charity_app/consts/consts.dart';
 import 'package:charity_app/reusable_widgets/our_button.dart';
 import 'package:charity_app/reusable_widgets/our_button2.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import 'package:charity_app/reusable_widgets/our_textField.dart';
+import 'package:charity_app/views/authentication/signup_requester.dart';
 import 'package:flutter/material.dart';
+
+import '../../reusable_widgets/userTypeSelector.dart';
 
 
 class SignupScreen extends StatefulWidget {
@@ -29,18 +33,18 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 const SizedBox(height: 60),
 
-        
+
                 // Charity Text (Yellow)
                 ourText(
                     color: yellowColor,
-                    title:  "Charity",
+                    title:  charity,
                     textSize: 40),
 
-        
+
                 // Sign Up Text (Black)
                 ourText(
                     color: blackColor,
-                    title: "Sign Up",
+                    title: signup,
                     textSize: 22),
 
 
@@ -72,14 +76,31 @@ class _SignupScreenState extends State<SignupScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                "type",
-                                style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 12,
-                                ),
+
+                              ourText(
+                                  color: textColor,
+                                  title: type,
+                                  textSize: 12),
+
+
+                              UserTypeSelector(
+                                selectedUserType: selectedUserType,
+                                onSelectionChanged: (type) {
+                                  setState(() {
+                                    selectedUserType = type;
+                                  });
+
+                                  if (type == requester) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => const SignupRequester()),
+                                    );
+                                  }
+                                },
                               ),
-                              Row(
+
+
+/*                              Row(
                                 children: [
                                   Expanded(
                                     child: ChoiceChip(
@@ -104,22 +125,22 @@ class _SignupScreenState extends State<SignupScreen> {
                                     child: ChoiceChip(
                                       label: const Text("Requester"),
                                       selected: selectedUserType == "Requester",
-                                    /*  onSelected: (bool selected) {
+                                    *//*  onSelected: (bool selected) {
                                         setState(() {
                                           selectedUserType = selected ? "Requester" : null;
                                         });
-                                      },*/
+                                      },*//*
                                       // In SignUpPage's Requester ChoiceChip:
                                       onSelected: (bool selected) {
                                         setState(() {
                                           selectedUserType = selected ? "Requester" : null;
                                         });
                                         if (selected) {
-                                       /*   Navigator.push(
+                                          Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) => const BecomeRequesterPage()),
-                                          );*/
+                                                builder: (context) => const SignupRequester()),
+                                          );
                                         }
                                       },
 
@@ -133,47 +154,47 @@ class _SignupScreenState extends State<SignupScreen> {
                                     ),
                                   ),
                                 ],
-                              ),
+                              )*/
                             ],
                           ),
-        
+
                           const SizedBox(height: 15),
 
                           // Full Name TextField
                           ourTextField(
-                              title: "Full Name",
-                              hint: "Enter Full Name",
+                              title: name,
+                              hint: nameHint,
                               isPass: false
 
                           ),
 
-        
+
                           const SizedBox(height: 15),
-        
+
                           // Password TextField
                           ourTextField(
-                            title: "Password",
-                            hint: "Enter Password",
+                            title: password,
+                            hint: passwordHint,
                             isPass: true
                           ),
 
-        
+
                           const SizedBox(height: 20),
-        
+
                           // Email TextField
                           ourTextField(
-                              title: "Email Address",
-                              hint: "Enter email Address",
+                              title: email,
+                              hint: emailHint,
                               isPass: false
                           ),
 
-        
+
                           const SizedBox(height: 15),
-        
+
                           // Phone TextField
                           ourTextField(
-                              title: "Phone No.",
-                              hint: "Enter Phone No.",
+                              title: phone,
+                              hint: phoneHint,
                               isPass: false
                           ),
 
@@ -184,21 +205,21 @@ class _SignupScreenState extends State<SignupScreen> {
                               onPress: (){},
                               color: yellowColor,
                               textColor: whiteColor,
-                              title: "SIGN UP"),
+                              title: signup),
                         ],
                       ),
                     ),
                   ],
                 ),
-        
+
                 const SizedBox(height: 20),
-        
+
                 // Sign In Button
                 ourButton2(
                     onPress: (){
                       Navigator.pop(context);
                     },
-                    title: "SIGN IN"),
+                    title: signin),
 
 
               ],
@@ -209,3 +230,15 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+

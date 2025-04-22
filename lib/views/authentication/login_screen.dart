@@ -28,7 +28,7 @@ class LoginScreen extends StatelessWidget {
                 // Charity Text (Yellow)
                 ourText(
                     color: yellowColor,
-                    title: "Charity",
+                    title: charity,
                     textSize: 40),
 
 
@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
                 // Sign In Text (Black)
                 ourText(
                     color: Colors.black,
-                    title: "Sign In",
+                    title: signin,
                     textSize: 22),
 
 
@@ -68,8 +68,8 @@ class LoginScreen extends StatelessWidget {
 
                           // Email TextField
                           ourTextField(
-                            title: "Email Address",
-                            hint: "Enter email Address",
+                            title: email,
+                            hint: emailHint,
                             isPass: false
                           ),
 
@@ -77,8 +77,8 @@ class LoginScreen extends StatelessWidget {
 
                           // Password TextField
                   ourTextField(
-                    title: "Password",
-                    hint: "Enter Password",
+                    title: password,
+                    hint: passwordHint,
                     isPass: true
                   ),
 
@@ -92,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                                 // Forgot Password Action
                               },
                               child: const Text(
-                                "Forget password",
+                                forgetPassword,
                                 style: TextStyle(color: Colors.black54),
                               ),
                             ),
@@ -104,7 +104,7 @@ class LoginScreen extends StatelessWidget {
              },
            color: yellowColor,
            textColor: whiteColor,
-           title: login)
+           title: signin)
                         ],
                       ),
                     ),
@@ -123,7 +123,7 @@ class LoginScreen extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => const SignupScreen()),
                       );
                     },
-                    title: "SIGN UP"),
+                    title: signup),
 
               ],
             ),

@@ -3,6 +3,7 @@
 
 const logout = "Log out";
 const signup = "Sign up";
+const appName = "Sign up";
 const charity = "Charity";
 const signin = "Sign in";
 const email = "Email Address";

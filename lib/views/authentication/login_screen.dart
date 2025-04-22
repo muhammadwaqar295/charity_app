@@ -1,4 +1,6 @@
 import 'package:charity_app/views/authentication/signup_screen.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../consts/consts.dart';
 import '../../reusable_widgets/our_button.dart';
@@ -118,10 +120,8 @@ class LoginScreen extends StatelessWidget {
                 // Sign Up Button
                 ourButton2(
                     onPress: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const SignupScreen()),
-                      );
+                      Get.to(()=> const SignupScreen());
+
                     },
                     title: signup),
 

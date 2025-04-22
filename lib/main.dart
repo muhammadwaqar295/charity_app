@@ -1,4 +1,6 @@
 import 'package:charity_app/views/authentication/login_screen.dart';
+import 'package:charity_app/views/splach_screen/splash_screen.dart';
+import 'package:get/get.dart';
 import 'consts/consts.dart';
 
 void main() {
@@ -11,15 +13,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: appName,
       theme: ThemeData(
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoginScreen()
+      home: const SplashScreen()
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:charity_app/views/history/history_screen.dart';
 import 'package:charity_app/views/notificatons/notification_screen.dart';
 import 'package:charity_app/views/profile/profile_screen.dart';
 import 'package:get/get.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 import '../../controllers/home_contoller.dart';
 import '../home_screens/home_screen.dart';
@@ -13,45 +14,38 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(HomeController());
 
-    var controller =Get.put(HomeController());
-
-    var navBarItem=[
-      BottomNavigationBarItem(icon: Image.asset(icHome,width: 26,),label: home),
-      BottomNavigationBarItem(icon: Image.asset(icHistory,width: 26,),label: history),
-      BottomNavigationBarItem(icon: Image.asset(icNotification,width: 26,),label: notification),
-      BottomNavigationBarItem(icon: Image.asset(icProfile,width: 26,),label: profile),
+    var navBody = const [
+      HomeScreen(),
+      HistoryScreen(),
+      NotificationScreen(),
+      ProfileScreen(),
     ];
 
-
-    var navBody=[
-
-      const HomeScreen(),
-      const HistoryScreen(),
-      const NotificationScreen(),
-      const ProfileScreen(),
-
-
+    var navItems = [
+      Image.asset(icHome, width: 26, color: whiteColor),
+      Image.asset(icHistory, width: 26, color: whiteColor),
+      Image.asset(icNotification, width: 26, color: whiteColor),
+      Image.asset(icProfile, width: 26, color: whiteColor),
     ];
+
     return Scaffold(
-      body: Column(
-        children: [
-          Obx(()=> Expanded(child: navBody.elementAt(controller.currentNavIndex.value)))
-        ],
-      ),
-      bottomNavigationBar: Obx(()=>
-          BottomNavigationBar(
-            currentIndex: controller.currentNavIndex.value,
-            backgroundColor: yellowColor,
-            selectedItemColor: whiteColor,
-            selectedLabelStyle: const TextStyle(fontFamily: semibold),
-            type: BottomNavigationBarType.fixed
-            ,items: navBarItem,
-            onTap: (value){
-              controller.currentNavIndex.value=value;
-            },
-          ),
-      ),
+      backgroundColor: Colors.grey[100],
+      bottomNavigationBar: Obx(() => CurvedNavigationBar(
+        backgroundColor: Colors.transparent,
+        color: yellowColor,
+        buttonBackgroundColor: yellowColor,
+        height: 60,
+        index: controller.currentNavIndex.value,
+        animationCurve: Curves.easeInOut,
+        animationDuration: const Duration(milliseconds: 300),
+        items: navItems,
+        onTap: (index) {
+          controller.currentNavIndex.value = index;
+        },
+      )),
+      body: Obx(() => navBody[controller.currentNavIndex.value]),
     );
   }
 }

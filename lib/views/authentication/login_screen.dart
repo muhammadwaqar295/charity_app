@@ -1,4 +1,5 @@
 import 'package:charity_app/views/authentication/signup_screen.dart';
+import 'package:charity_app/views/home/home.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -103,6 +104,7 @@ class LoginScreen extends StatelessWidget {
                           // Login Button
                   ourButton(
                 onPress: (){
+                  Get.to(()=> const Home());
              },
            color: yellowColor,
            textColor: whiteColor,

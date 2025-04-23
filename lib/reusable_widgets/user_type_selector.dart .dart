@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:charity_app/consts/consts.dart';
+
 
 class UserTypeSelector extends StatelessWidget {
   final String? selectedUserType;
@@ -21,8 +22,8 @@ class UserTypeSelector extends StatelessWidget {
             onSelected: (bool selected) {
               onSelectionChanged(selected ? "Donars" : null);
             },
-            backgroundColor: Colors.grey[200],
-            selectedColor: Colors.amber[700],
+            backgroundColor:greyColor,
+            selectedColor: yellowColor,
             labelStyle: TextStyle(
               color: selectedUserType == "Donars" ? Colors.white : Colors.black,
             ),
@@ -36,8 +37,8 @@ class UserTypeSelector extends StatelessWidget {
             onSelected: (bool selected) {
               onSelectionChanged(selected ? "Requester" : null);
             },
-            backgroundColor: Colors.grey[200],
-            selectedColor: Colors.amber[700],
+            backgroundColor:greyColor,
+            selectedColor: yellowColor,
             labelStyle: TextStyle(
               color: selectedUserType == "Requester" ? Colors.white : Colors.black,
             ),

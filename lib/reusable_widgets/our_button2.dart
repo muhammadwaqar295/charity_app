@@ -1,5 +1,3 @@
-
-
 import 'package:charity_app/consts/consts.dart';
 
 Widget ourButton2({

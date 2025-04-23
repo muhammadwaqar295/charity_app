@@ -12,7 +12,7 @@ const password = "Password";
 const passwordHint = "Enter Password";
 const forgetPassword = "Forget password";
 const type = "type";
-const donors = "Donors";
+const donors = "Donars";
 const requester = "Requester";
 const name = "Full Name";
 const nameHint = "Enter Full Name";
@@ -22,4 +22,8 @@ const becomeRequester = "Become a Requester";
 const addDetails = "Add Details";
 const addDetailsHint = "Plz Add Details.";
 const submit = "Submit";
+const home = "Home";
+const history = "History";
+const profile = "Profile";
+const notification = "Notification";
 

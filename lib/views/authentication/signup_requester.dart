@@ -1,5 +1,5 @@
-import 'package:charity_app/reusable_widgets/ourBackButton.dart';
-import 'package:charity_app/reusable_widgets/ourMultiLineTextField.dart';
+import 'package:charity_app/reusable_widgets/our_back_button.dart';
+import 'package:charity_app/reusable_widgets/our_multi_line_textfield.dart';
 import 'package:charity_app/reusable_widgets/our_button.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import 'package:charity_app/reusable_widgets/our_textField.dart';

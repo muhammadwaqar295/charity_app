@@ -1,12 +1,14 @@
 import 'package:charity_app/consts/consts.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+
+class HistoryScreen extends StatelessWidget {
+  const HistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-backgroundColor: Colors.red,
+      backgroundColor: Colors.cyan,
+
     );
   }
 }

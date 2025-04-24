@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:charity_app/consts/colors.dart';
+import 'package:charity_app/consts/consts.dart';
+import 'package:charity_app/consts/images.dart';
+import 'package:charity_app/reusable_widgets/our_back_button.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import 'package:charity_app/reusable_widgets/our_button.dart';
 import 'package:charity_app/reusable_widgets/our_textField.dart';
@@ -20,12 +21,7 @@ class EditProfileScreen extends StatelessWidget {
               // Back Arrow
               Align(
                 alignment: Alignment.topLeft,
-                child: IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
+                child: ourBackButton(context)
               ),
 
               const SizedBox(height: 10),
@@ -33,7 +29,7 @@ class EditProfileScreen extends StatelessWidget {
               // Profile Text
               ourText(
                 color: blackColor,
-                title: "PROFILE",
+                title: profile,
                 textSize: 22,
               ),
 
@@ -42,7 +38,7 @@ class EditProfileScreen extends StatelessWidget {
               // Profile Image
               const CircleAvatar(
                 radius: 50,
-                backgroundImage: AssetImage("assets/images/profile.png"), // replace with your image or network
+                backgroundImage: AssetImage(imgProfile), // replace with your image or network
               ),
 
               const SizedBox(height: 30),
@@ -52,14 +48,14 @@ class EditProfileScreen extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: ourText(
                   color: blackColor,
-                  title: "Your Name",
+                  title: yourName,
                   textSize: 14,
                 ),
               ),
               const SizedBox(height: 5),
               ourTextField(
-                title: "",
-                hint: "Trần Lâm Khang",
+                title: noorJan,
+                //hint: "Trần Lâm Khang",
                 isPass: false,
               ),
 
@@ -70,14 +66,14 @@ class EditProfileScreen extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: ourText(
                   color: blackColor,
-                  title: "Your Email Address",
+                  title: yourEmailAddress,
                   textSize: 14,
                 ),
               ),
               const SizedBox(height: 5),
               ourTextField(
-                title: "",
-                hint: "tranlamkhang99@gmail.com",
+                title: noorGmail,
+              //  hint: "tranlamkhang99@gmail.com",
                 isPass: false,
               ),
 
@@ -88,36 +84,20 @@ class EditProfileScreen extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: ourText(
                   color: blackColor,
-                  title: "Your Phone",
+                  title: yourPhone,
                   textSize: 14,
                 ),
               ),
               const SizedBox(height: 5),
               ourTextField(
-                title: "",
-                hint: "0902442394",
+                title: phoneNo,
+               // hint: "0902442394",
                 isPass: false,
               ),
 
               const SizedBox(height: 20),
 
-              // Total Amount Donated (non-editable)
-              Align(
-                alignment: Alignment.centerLeft,
-                child: ourText(
-                  color: blackColor,
-                  title: "Total Amount Donated:",
-                  textSize: 12,
-                ),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: ourText(
-                  color: blackColor,
-                  title: "5000 PKR",
-                  textSize: 12,
-                ),
-              ),
+
 
               const SizedBox(height: 30),
 
@@ -128,7 +108,7 @@ class EditProfileScreen extends StatelessWidget {
                 },
                 color: yellowColor,
                 textColor: whiteColor,
-                title: "save",
+                title: save,
               ),
             ],
           ),

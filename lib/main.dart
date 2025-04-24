@@ -37,6 +37,9 @@ git push origin main --force
 git push waqar main
 
 
+git pull origin main
+
+
 */
 
 

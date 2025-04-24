@@ -27,3 +27,13 @@ const history = "History";
 const profile = "Profile";
 const notification = "Notification";
 
+
+const yourName = "Your Name";
+const noorJan = "Noor Jan";
+const yourEmailAddress = "Your Email Address";
+const noorGmail = "noor@gmail.com";
+const yourPhone = "Your Phone";
+const phoneNo= "03038034616";
+const save= "Save";
+
+

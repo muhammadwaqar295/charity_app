@@ -35,5 +35,26 @@ const noorGmail = "noor@gmail.com";
 const yourPhone = "Your Phone";
 const phoneNo= "03038034616";
 const save= "Save";
+const categories= "Categories";
+const food= "Food";
+const clothing= "Clothing";
+const medical= "Medical";
+const shelter= "Shelter";
+
+const editProfile= "Edit Profile";
+const foodSupport= "Food Support";
+const ramadanSupport= "Ramadan Support";
+const clothingHelp= "Clothing Help";
+
+
+const donationCampaigns= "Donation Campaigns";
+const medicalSupport= "Medical Support";
+const eidCampaigns= "Eid Campaigns";
+const eidRelief= "Eid Relief";
+const urgentNeedFor= "Urgent need for medical treatment...";
+
+
+const searchCharityCampaigns= "Search Charity Campaigns";
+
 
 

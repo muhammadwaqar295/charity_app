@@ -1,6 +1,8 @@
+import 'package:charity_app/consts/consts.dart';
 import 'package:charity_app/consts/images.dart';
-import 'package:flutter/material.dart';
+import 'package:charity_app/reusable_widgets/profile_circle_avatar.dart';
 
+import '../../reusable_widgets/our_text.dart';
 import 'components/category_items.dart';
 import 'components/spacial_event_compaigns.dart';
 
@@ -18,30 +20,30 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header
-              const Row(
+               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Icon(Icons.menu, size: 28),
-                  Text(
-                    "Charity",
-                    style: TextStyle(
-                      color: Colors.orange,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+
+
+
+
+                 ourText
+                   (color: yellowColor,
+                     title: charity,
+                     textSize: 28),
+
                   Row(
                     children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.orange,
-                        radius: 18,
-                        child: Icon(Icons.notifications_none, size: 20, color: Colors.white),
-                      ),
-                      SizedBox(width: 8),
-                      CircleAvatar(
-                        radius: 18,
-                        backgroundImage: AssetImage(imgProfile),
-                      ),
+                      
+
+                      
+                      ourCircleAvatar(radius: 18,size: 20,fallbackIcon:Icons.notifications_none),
+                      
+                      const SizedBox(width: 8),
+
+                    ourCircleAvatar(radius: 18, image: imgProfile,)
+
                     ],
                   ),
                 ],
@@ -52,13 +54,13 @@ class HomeScreen extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
+                  color: greyColor,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: const TextField(
                   decoration: InputDecoration(
-                    icon: Icon(Icons.search, color: Colors.brown, size: 20),
-                    hintText: "Search charity campaigns",
+                    icon: Icon(Icons.search, color: blackColor, size: 20),
+                    hintText: searchCharityCampaigns,
                     border: InputBorder.none,
                     isDense: true,
                     contentPadding: EdgeInsets.symmetric(vertical: 8),
@@ -68,12 +70,12 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 16),
 
               // Donation Campaign Grid
-              const Padding(
-                padding: EdgeInsets.only(left: 4),
-                child: Text(
-                  "Donation Campaigns",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+               Padding(
+                padding: const EdgeInsets.only(left: 4),
+                child:
+
+                ourText(color: blackColor, title:  donationCampaigns, textSize: 16),
+
               ),
               const SizedBox(height: 8),
               LayoutBuilder(
@@ -105,15 +107,18 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 4),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 2),
-                            child: Text("Medical Support",
-                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
+                           Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 2),
+                            child:
+                                ourText(color: blackColor, title: medicalSupport, textSize: 12),
+
+
                           ),
-                          const Expanded(
+                           const Expanded(
                             child: Padding(
                               padding: EdgeInsets.symmetric(horizontal: 2),
-                              child: Text(
+                              child:
+                              Text(
                                 "Urgent need for medical treatment...",
                                 style: TextStyle(fontSize: 10),
                                 maxLines: 2,
@@ -130,13 +135,12 @@ class HomeScreen extends StatelessWidget {
 
 
               // Eid Campaign Section
-              const Padding(
-                padding: EdgeInsets.only(left: 4),
-                child: Text(
-                  "Eid Campaigns",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ),
+               Padding(
+                padding: const EdgeInsets.only(left: 4),
+                child:
+                ourText(color: blackColor, title: eidCampaigns, textSize: 16),
+               ),
+
               const SizedBox(height: 8),
 
 // Horizontal scrollable Eid section
@@ -146,13 +150,13 @@ class HomeScreen extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   children: [
                     const SizedBox(width: 12), // spacing from left edge
-                    spacialCompaings(imgEid, 'Eid Relief'),
+                    spacialCompaings(imgEid, eidRelief),
                     const SizedBox(width: 12),
-                    spacialCompaings(imgRamazan, 'Ramadan Support'),
+                    spacialCompaings(imgRamazan, ramadanSupport),
                     const SizedBox(width: 12),
-                    spacialCompaings(imgFood, 'Food Support'),
+                    spacialCompaings(imgFood, foodSupport),
                     const SizedBox(width: 12),
-                    spacialCompaings(imgCloth, 'Clothing Help'),
+                    spacialCompaings(imgCloth, clothingHelp),
                     const SizedBox(width: 12), // spacing at end
                   ],
                 ),
@@ -161,12 +165,11 @@ class HomeScreen extends StatelessWidget {
 
               // Categories Section
 
-              const Padding(
-                padding: EdgeInsets.only(left: 4),
-                child: Text(
-                  "Categories",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+               Padding(
+                padding: const EdgeInsets.only(left: 4),
+                child:
+                ourText(color: blackColor, title: categories, textSize: 16),
+
               ),
               const SizedBox(height: 8),
               SizedBox(
@@ -177,10 +180,10 @@ class HomeScreen extends StatelessWidget {
                   crossAxisSpacing: 6,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    categoryItem(imgFood, 'Food'),
-                    categoryItem(imgCloth, 'Clothing'),
-                    categoryItem(imgMedical, 'Medical'),
-                    categoryItem(imgConstruction, 'Shelter'),
+                    categoryItem(imgFood, food),
+                    categoryItem(imgCloth, clothing),
+                    categoryItem(imgMedical, medical),
+                    categoryItem(imgConstruction, shelter),
                   ],
                 ),
               ),

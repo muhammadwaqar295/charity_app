@@ -4,6 +4,7 @@ import 'package:charity_app/reusable_widgets/our_back_button.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import 'package:charity_app/reusable_widgets/our_button.dart';
 import 'package:charity_app/reusable_widgets/our_textField.dart';
+import 'package:charity_app/reusable_widgets/profile_circle_avatar.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
@@ -36,10 +37,8 @@ class EditProfileScreen extends StatelessWidget {
               const SizedBox(height: 20),
 
               // Profile Image
-              const CircleAvatar(
-                radius: 50,
-                backgroundImage: AssetImage(imgProfile), // replace with your image or network
-              ),
+              ourCircleAvatar(radius: 50,image: imgProfile),
+
 
               const SizedBox(height: 30),
 

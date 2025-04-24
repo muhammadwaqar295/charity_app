@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
        required String title,
        required double textSize,
 
+
     }){
      return Text(
     title,

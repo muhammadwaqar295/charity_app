@@ -1,11 +1,15 @@
 
 
-
 const splashImg =  'assets/images/splash.png';
 const icHome =  'assets/icons/Ic_home.png';
 const icHistory =  'assets/icons/Ic_history.png';
 const icProfile =  'assets/icons/Ic_profile.png';
 const icNotification =  'assets/icons/Ic_notification.png';
+const icMenuNotification ='assets/icons/Ic_menu_notification.png';
+const icAbout =         'assets/icons/Ic_about.png';
+const icAdmin =         'assets/icons/Ic_admin.png';
+const icEvent =         'assets/icons/Ic_event.png';
+const icLogout =        'assets/icons/Ic_logout.png';
 
 
 

@@ -52,6 +52,10 @@ const PKR= "5000 PKR";
 const donateNow= "Donate Now";
 const daysLeft= "10 days left";
 const details= "Details:";
+const about= "about:";
+const events= "event:";
+const admin= "event:";
+
 
 
 const donationCampaigns= "Donation Campaigns";
@@ -68,7 +72,3 @@ const requesterDetails=
     "I have tried everything within my reach, but I am left with no choice but to ask for your help. Even a small contribution could make a huge difference and give me hope to get back on my feet.\n\n"
     "Please, if you can, support me in this difficult time. Your kindness and generosity could save my life. May Allah reward you for your kindness.\n\n"
     "Thank you.";
-
-
-
-

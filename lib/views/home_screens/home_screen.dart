@@ -1,11 +1,10 @@
-import 'package:charity_app/consts/consts.dart';
+import 'package:charity_app/consts/colors.dart';
 import 'package:charity_app/consts/images.dart';
-import 'package:charity_app/reusable_widgets/profile_circle_avatar.dart';
-import 'package:charity_app/views/donation/donation_for_person.dart';
+import 'package:charity_app/views/home_screens/components/MenuBarPage.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../reusable_widgets/our_text.dart';
 import 'components/category_items.dart';
 import 'components/spacial_event_compaigns.dart';
 
@@ -23,30 +22,36 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header
-               Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.menu, size: 28),
+                  IconButton(
+                    icon: Icon(Icons.menu, size: 28),
+                    onPressed: () {
+                     Get.to(()=>MenuBarPage());
+                    },
+                  ),
 
-
-
-
-                 ourText
-                   (color: yellowColor,
-                     title: charity,
-                     textSize: 28),
-
+                  Text(
+                    "Charity",
+                    style: TextStyle(
+                      color: Colors.orange,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   Row(
                     children: [
-                      
-
-                      
-                      ourCircleAvatar(radius: 18,size: 20,fallbackIcon:Icons.notifications_none),
-                      
-                      const SizedBox(width: 8),
-
-                    ourCircleAvatar(radius: 18, image: imgProfile,)
-
+                      CircleAvatar(
+                        backgroundColor: Colors.orange,
+                        radius: 18,
+                        child: Icon(Icons.notifications_none, size: 20, color: Colors.white),
+                      ),
+                      SizedBox(width: 8),
+                      CircleAvatar(
+                        radius: 18,
+                        backgroundImage: AssetImage(imgProfile),
+                      ),
                     ],
                   ),
                 ],
@@ -57,13 +62,13 @@ class HomeScreen extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                 decoration: BoxDecoration(
-                  color: greyColor,
+                  color: Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: const TextField(
                   decoration: InputDecoration(
-                    icon: Icon(Icons.search, color: blackColor, size: 20),
-                    hintText: searchCharityCampaigns,
+                    icon: Icon(Icons.search, color: Colors.brown, size: 20),
+                    hintText: "Search charity campaigns",
                     border: InputBorder.none,
                     isDense: true,
                     contentPadding: EdgeInsets.symmetric(vertical: 8),
@@ -73,18 +78,16 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 16),
 
               // Donation Campaign Grid
-               Padding(
-                padding: const EdgeInsets.only(left: 4),
-                child:
-
-                ourText(color: blackColor, title:  donationCampaigns, textSize: 16),
-
+              const Padding(
+                padding: EdgeInsets.only(left: 4),
+                child: Text(
+                  "Donation Campaigns",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
               ),
               const SizedBox(height: 8),
               LayoutBuilder(
-
                 builder: (context, constraints) {
-
                   final itemWidth = (constraints.maxWidth - 8) / 2;
                   return GridView.builder(
                     shrinkWrap: true,
@@ -96,59 +99,54 @@ class HomeScreen extends StatelessWidget {
                       mainAxisSpacing: 8,
                       childAspectRatio: itemWidth / (itemWidth * 0.99),
                     ),
-
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                           Get.to(()=>const DonationDetailsScreen());
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: itemWidth * 0.65,
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: yellowColor, width: 1.5),
-                                  borderRadius: BorderRadius.circular(8),
-                                  image: const DecorationImage(
-                                    image: AssetImage(imgRequester),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+                    itemBuilder: (context, index) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: itemWidth * 0.65,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: yellowColor, width: 1.5),
+                              borderRadius: BorderRadius.circular(8),
+                              image: const DecorationImage(
+                                image: AssetImage(imgRequester),
+                                fit: BoxFit.cover,
                               ),
-                              const SizedBox(height: 4),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 2),
-                                child: ourText(color: blackColor, title: medicalSupport, textSize: 12),
-                              ),
-                              const Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 2),
-                                  child: Text(
-                                    urgentNeedFor,
-                                    style: TextStyle(fontSize: 10),
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
-                        );
-                      }
-
+                          const SizedBox(height: 4),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 2),
+                            child: Text("Medical Support",
+                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
+                          ),
+                          const Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 2),
+                              child: Text(
+                                "Urgent need for medical treatment...",
+                                style: TextStyle(fontSize: 10),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                   );
                 },
               ),
 
 
               // Eid Campaign Section
-               Padding(
-                padding: const EdgeInsets.only(left: 4),
-                child:
-                ourText(color: blackColor, title: eidCampaigns, textSize: 16),
-               ),
-
+              const Padding(
+                padding: EdgeInsets.only(left: 4),
+                child: Text(
+                  "Eid Campaigns",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
               const SizedBox(height: 8),
 
 // Horizontal scrollable Eid section
@@ -158,13 +156,13 @@ class HomeScreen extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   children: [
                     const SizedBox(width: 12), // spacing from left edge
-                    spacialCompaings(imgEid, eidRelief),
+                    spacialCompaings(imgEid, 'Eid Relief'),
                     const SizedBox(width: 12),
-                    spacialCompaings(imgRamazan, ramadanSupport),
+                    spacialCompaings(imgRamazan, 'Ramadan Support'),
                     const SizedBox(width: 12),
-                    spacialCompaings(imgFood, foodSupport),
+                    spacialCompaings(imgFood, 'Food Support'),
                     const SizedBox(width: 12),
-                    spacialCompaings(imgCloth, clothingHelp),
+                    spacialCompaings(imgCloth, 'Clothing Help'),
                     const SizedBox(width: 12), // spacing at end
                   ],
                 ),
@@ -173,11 +171,12 @@ class HomeScreen extends StatelessWidget {
 
               // Categories Section
 
-               Padding(
-                padding: const EdgeInsets.only(left: 4),
-                child:
-                ourText(color: blackColor, title: categories, textSize: 16),
-
+              const Padding(
+                padding: EdgeInsets.only(left: 4),
+                child: Text(
+                  "Categories",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
               ),
               const SizedBox(height: 8),
               SizedBox(
@@ -188,10 +187,10 @@ class HomeScreen extends StatelessWidget {
                   crossAxisSpacing: 6,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    categoryItem(imgFood, food),
-                    categoryItem(imgCloth, clothing),
-                    categoryItem(imgMedical, medical),
-                    categoryItem(imgConstruction, shelter),
+                    categoryItem(imgFood, 'Food'),
+                    categoryItem(imgCloth, 'Clothing'),
+                    categoryItem(imgMedical, 'Medical'),
+                    categoryItem(imgConstruction, 'Shelter'),
                   ],
                 ),
               ),
@@ -201,5 +200,16 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+
+
+
+
+
+
+
+
+
+
+
 
 }

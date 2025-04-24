@@ -26,6 +26,7 @@ const home = "Home";
 const history = "History";
 const profile = "Profile";
 const notification = "Notification";
+const nameAbbas = "Name: Abbas";
 
 
 const yourName = "Your Name";
@@ -40,11 +41,17 @@ const food= "Food";
 const clothing= "Clothing";
 const medical= "Medical";
 const shelter= "Shelter";
+const compin= "Compin";
 
 const editProfile= "Edit Profile";
 const foodSupport= "Food Support";
 const ramadanSupport= "Ramadan Support";
 const clothingHelp= "Clothing Help";
+const needAmount= "Need Amount:  ";
+const PKR= "5000 PKR";
+const donateNow= "Donate Now";
+const daysLeft= "10 days left";
+const details= "Details:";
 
 
 const donationCampaigns= "Donation Campaigns";
@@ -55,6 +62,13 @@ const urgentNeedFor= "Urgent need for medical treatment...";
 
 
 const searchCharityCampaigns= "Search Charity Campaigns";
+const requesterDetails=
+    "I am a poor man struggling to make ends meet. Life has been incredibly difficult, and now I am facing a medical issue that I cannot afford to treat. "
+    "The doctors have recommended treatment that costs around 5000 PKR, but my financial situation makes it impossible for me to arrange this amount.\n\n"
+    "I have tried everything within my reach, but I am left with no choice but to ask for your help. Even a small contribution could make a huge difference and give me hope to get back on my feet.\n\n"
+    "Please, if you can, support me in this difficult time. Your kindness and generosity could save my life. May Allah reward you for your kindness.\n\n"
+    "Thank you.";
+
 
 
 

@@ -1,6 +1,9 @@
 import 'package:charity_app/consts/consts.dart';
 import 'package:charity_app/consts/images.dart';
 import 'package:charity_app/reusable_widgets/profile_circle_avatar.dart';
+import 'package:charity_app/views/donation/donation_for_person.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../reusable_widgets/our_text.dart';
 import 'components/category_items.dart';
@@ -79,7 +82,9 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               LayoutBuilder(
+
                 builder: (context, constraints) {
+
                   final itemWidth = (constraints.maxWidth - 8) / 2;
                   return GridView.builder(
                     shrinkWrap: true,
@@ -91,44 +96,47 @@ class HomeScreen extends StatelessWidget {
                       mainAxisSpacing: 8,
                       childAspectRatio: itemWidth / (itemWidth * 0.99),
                     ),
-                    itemBuilder: (context, index) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: itemWidth * 0.65,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.orange, width: 1.5),
-                              borderRadius: BorderRadius.circular(8),
-                              image: const DecorationImage(
-                                image: AssetImage(imgRequester),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 2),
-                            child:
-                                ourText(color: blackColor, title: medicalSupport, textSize: 12),
 
-
-                          ),
-                           const Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 2),
-                              child:
-                              Text(
-                                "Urgent need for medical treatment...",
-                                style: TextStyle(fontSize: 10),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                           Get.to(()=>const DonationDetailsScreen());
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: itemWidth * 0.65,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: yellowColor, width: 1.5),
+                                  borderRadius: BorderRadius.circular(8),
+                                  image: const DecorationImage(
+                                    image: AssetImage(imgRequester),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               ),
-                            ),
+                              const SizedBox(height: 4),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 2),
+                                child: ourText(color: blackColor, title: medicalSupport, textSize: 12),
+                              ),
+                              const Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 2),
+                                  child: Text(
+                                    urgentNeedFor,
+                                    style: TextStyle(fontSize: 10),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      );
-                    },
+                        );
+                      }
+
                   );
                 },
               ),
@@ -193,16 +201,5 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-
-
-
-
-
-
-
-
-
-
-
 
 }

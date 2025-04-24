@@ -3,6 +3,7 @@ import 'package:charity_app/reusable_widgets/our_button.dart';
 import 'package:charity_app/reusable_widgets/our_button2.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import 'package:charity_app/reusable_widgets/our_textField.dart';
+import 'package:charity_app/views/authentication/login_screen.dart';
 import 'package:charity_app/views/authentication/signup_requester.dart';
 import 'package:get/get.dart';
 import '../../reusable_widgets/user_type_selector.dart .dart';
@@ -213,7 +214,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 // Sign In Button
                 ourButton2(
                     onPress: (){
-                      Get.back;
+                      Get.off(const LoginScreen());
 
                     },
                     title: signin),

@@ -56,6 +56,11 @@ const about= "about:";
 const events= "event:";
 const admin= "event:";
 const donate= "Donate:";
+const cancel= "Cancel";
+const  addFoodItems=  "Add Food Items";
+const  addTime=  "Add Time";
+const  description=  "Description";
+const  addDescription=  " Add Description";
 
 
 

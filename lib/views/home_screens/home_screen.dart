@@ -1,12 +1,14 @@
-import 'package:charity_app/consts/colors.dart';
 import 'package:charity_app/consts/consts.dart';
 import 'package:charity_app/consts/images.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import 'package:charity_app/reusable_widgets/profile_circle_avatar.dart';
+import 'package:charity_app/views/donation/donate_cloth_screen.dart';
+import 'package:charity_app/views/donation/donate_food_screen.dart';
+import 'package:charity_app/views/donation/donate_for_construction_screen.dart';
+import 'package:charity_app/views/donation/donate_for_medical_screen.dart';
+import 'package:charity_app/views/donation/donation_for_person.dart';
 import 'package:charity_app/views/home_screens/components/MenuBarPage.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import 'components/category_items.dart';
 import 'components/spacial_event_compaigns.dart';
@@ -17,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: whiteColor,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -95,42 +97,50 @@ class HomeScreen extends StatelessWidget {
                       mainAxisSpacing: 8,
                       childAspectRatio: itemWidth / (itemWidth * 0.99),
                     ),
+
                     itemBuilder: (context, index) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: itemWidth * 0.65,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: yellowColor, width: 1.5),
-                              borderRadius: BorderRadius.circular(8),
-                              image: const DecorationImage(
-                                image: AssetImage(imgRequester),
-                                fit: BoxFit.cover,
+                      return GestureDetector(
+                        onTap: () {
+
+                          Get.to(()=>const DonationDetailsScreen());
+
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: itemWidth * 0.65,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: yellowColor, width: 1.5),
+                                borderRadius: BorderRadius.circular(8),
+                                image: const DecorationImage(
+                                  image: AssetImage(imgRequester),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 4),
-                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 2),
-                            child:
-                      ourText(color: blackColor, title: medicalSupport, textSize: 12)
-
-
-                          ),
-                          const Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 2),
-                              child:
-                              Text(
-                                urgentNeedFor,
-                                style: TextStyle(fontSize: 10),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
+                            const SizedBox(height: 4),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 2),
+                              child: ourText(
+                                color: blackColor,
+                                title: medicalSupport,
+                                textSize: 12,
                               ),
                             ),
-                          ),
-                        ],
+                            const Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 2),
+                                child: Text(
+                                  urgentNeedFor,
+                                  style: TextStyle(fontSize: 10),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       );
                     },
                   );
@@ -182,10 +192,10 @@ class HomeScreen extends StatelessWidget {
                   crossAxisSpacing: 6,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    categoryItem(imgFood, food),
-                    categoryItem(imgCloth, clothing),
-                    categoryItem(imgMedical, medical),
-                    categoryItem(imgConstruction, shelter),
+                    categoryItem(imgFood, food,()=>Get.to(()=>const FoodDonationScreen())),
+                    categoryItem(imgCloth, clothing,()=>Get.to(()=>const DonateClothScreen())),
+                    categoryItem(imgMedical, medical,()=>Get.to(()=>const DonateForMedicalScreen())),
+                    categoryItem(imgConstruction, shelter,()=>Get.to(()=>const DonateForConstructionScreen())),
                   ],
                 ),
               ),

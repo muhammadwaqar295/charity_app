@@ -5,6 +5,8 @@ import 'package:charity_app/reusable_widgets/our_multi_line_textfield.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import 'package:charity_app/reusable_widgets/our_textField.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 
 import '../../consts/strings.dart'; 
@@ -38,18 +40,18 @@ class FoodDonationScreen extends StatelessWidget {
             
                 const SizedBox(height: 8),
             
-                ourTextField(title:addFoodItems  ,hint: addFoodItems,isPass: false),
+                ourTextField(title:addFoods  ,hint: addFoodItems,isPass: false),
             
             
                 const SizedBox(height: 20),
             
                 // Add Time Field
-                ourText(color: blackColor, title: addTime, textSize: 16),
+                ourText(color: blackColor, title: availabilityTime, textSize: 16),
             
             
                 const SizedBox(height: 8),
             
-                ourTextField(title:addTime  ,hint: addTime,isPass: false),
+                ourTextField(title:addTime  ,hint: availabilityTime,isPass: false),
             
                 const SizedBox(height: 20),
             
@@ -79,7 +81,9 @@ class FoodDonationScreen extends StatelessWidget {
                   width: double.infinity,
                   child:
                   ourButton(
-                      onPress: (){},
+                      onPress: (){
+                        Get.back();
+                      },
                       color: yellowColor,
                       textColor: textColor,
                       title: cancel),

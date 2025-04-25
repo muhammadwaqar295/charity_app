@@ -1,9 +1,14 @@
-import 'package:charity_app/consts/colors.dart';
+import 'package:charity_app/consts/consts.dart';
 import 'package:charity_app/consts/images.dart';
+import 'package:charity_app/reusable_widgets/our_text.dart';
+import 'package:charity_app/reusable_widgets/profile_circle_avatar.dart';
+import 'package:charity_app/views/donation/donate_cloth_screen.dart';
+import 'package:charity_app/views/donation/donate_food_screen.dart';
+import 'package:charity_app/views/donation/donate_for_construction_screen.dart';
+import 'package:charity_app/views/donation/donate_for_medical_screen.dart';
+import 'package:charity_app/views/donation/donation_for_person.dart';
 import 'package:charity_app/views/home_screens/components/MenuBarPage.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import 'components/category_items.dart';
 import 'components/spacial_event_compaigns.dart';
@@ -14,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: whiteColor,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -26,32 +31,25 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.menu, size: 28),
+                    icon: const Icon(Icons.menu, size: 28),
                     onPressed: () {
                      Get.to(()=>MenuBarPage());
                     },
                   ),
 
-                  Text(
-                    "Charity",
-                    style: TextStyle(
-                      color: Colors.orange,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  ourText(color:yellowColor , title: charity, textSize: 24),
+
+
                   Row(
                     children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.orange,
-                        radius: 18,
-                        child: Icon(Icons.notifications_none, size: 20, color: Colors.white),
-                      ),
-                      SizedBox(width: 8),
-                      CircleAvatar(
-                        radius: 18,
-                        backgroundImage: AssetImage(imgProfile),
-                      ),
+                      ourCircleAvatar(radius: 18,fallbackIcon: Icons.notifications_none),
+
+
+                      const SizedBox(width: 8),
+
+                      ourCircleAvatar(radius: 18,image: imgProfile),
+
+
                     ],
                   ),
                 ],
@@ -67,8 +65,8 @@ class HomeScreen extends StatelessWidget {
                 ),
                 child: const TextField(
                   decoration: InputDecoration(
-                    icon: Icon(Icons.search, color: Colors.brown, size: 20),
-                    hintText: "Search charity campaigns",
+                    icon: Icon(Icons.search, color: blackColor, size: 20),
+                    hintText: searchCharityCampaigns,
                     border: InputBorder.none,
                     isDense: true,
                     contentPadding: EdgeInsets.symmetric(vertical: 8),
@@ -78,12 +76,12 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 16),
 
               // Donation Campaign Grid
-              const Padding(
-                padding: EdgeInsets.only(left: 4),
-                child: Text(
-                  "Donation Campaigns",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+               Padding(
+                padding: const EdgeInsets.only(left: 4),
+                child:
+                    ourText(color: blackColor, title: donationCampaigns, textSize: 16)
+
+
               ),
               const SizedBox(height: 8),
               LayoutBuilder(
@@ -99,39 +97,50 @@ class HomeScreen extends StatelessWidget {
                       mainAxisSpacing: 8,
                       childAspectRatio: itemWidth / (itemWidth * 0.99),
                     ),
+
                     itemBuilder: (context, index) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: itemWidth * 0.65,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: yellowColor, width: 1.5),
-                              borderRadius: BorderRadius.circular(8),
-                              image: const DecorationImage(
-                                image: AssetImage(imgRequester),
-                                fit: BoxFit.cover,
+                      return GestureDetector(
+                        onTap: () {
+
+                          Get.to(()=>const DonationDetailsScreen());
+
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: itemWidth * 0.65,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: yellowColor, width: 1.5),
+                                borderRadius: BorderRadius.circular(8),
+                                image: const DecorationImage(
+                                  image: AssetImage(imgRequester),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 4),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 2),
-                            child: Text("Medical Support",
-                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
-                          ),
-                          const Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 2),
-                              child: Text(
-                                "Urgent need for medical treatment...",
-                                style: TextStyle(fontSize: 10),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
+                            const SizedBox(height: 4),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 2),
+                              child: ourText(
+                                color: blackColor,
+                                title: medicalSupport,
+                                textSize: 12,
                               ),
                             ),
-                          ),
-                        ],
+                            const Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 2),
+                                child: Text(
+                                  urgentNeedFor,
+                                  style: TextStyle(fontSize: 10),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       );
                     },
                   );
@@ -140,12 +149,9 @@ class HomeScreen extends StatelessWidget {
 
 
               // Eid Campaign Section
-              const Padding(
-                padding: EdgeInsets.only(left: 4),
-                child: Text(
-                  "Eid Campaigns",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+               Padding(
+                padding: const EdgeInsets.only(left: 4),
+                child: ourText(color: blackColor, title: eidCampaigns, textSize: 16)
               ),
               const SizedBox(height: 8),
 
@@ -156,13 +162,13 @@ class HomeScreen extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   children: [
                     const SizedBox(width: 12), // spacing from left edge
-                    spacialCompaings(imgEid, 'Eid Relief'),
+                    spacialCompaings(imgEid, eidRelief),
                     const SizedBox(width: 12),
-                    spacialCompaings(imgRamazan, 'Ramadan Support'),
+                    spacialCompaings(imgRamazan, ramadanSupport),
                     const SizedBox(width: 12),
-                    spacialCompaings(imgFood, 'Food Support'),
+                    spacialCompaings(imgFood, foodSupport),
                     const SizedBox(width: 12),
-                    spacialCompaings(imgCloth, 'Clothing Help'),
+                    spacialCompaings(imgCloth, clothingHelp),
                     const SizedBox(width: 12), // spacing at end
                   ],
                 ),
@@ -171,12 +177,11 @@ class HomeScreen extends StatelessWidget {
 
               // Categories Section
 
-              const Padding(
-                padding: EdgeInsets.only(left: 4),
-                child: Text(
-                  "Categories",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+               Padding(
+                padding: const EdgeInsets.only(left: 4),
+                child:
+                ourText(color: blackColor, title: categories, textSize: 16)
+
               ),
               const SizedBox(height: 8),
               SizedBox(
@@ -187,10 +192,10 @@ class HomeScreen extends StatelessWidget {
                   crossAxisSpacing: 6,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    categoryItem(imgFood, 'Food'),
-                    categoryItem(imgCloth, 'Clothing'),
-                    categoryItem(imgMedical, 'Medical'),
-                    categoryItem(imgConstruction, 'Shelter'),
+                    categoryItem(imgFood, food,()=>Get.to(()=>const FoodDonationScreen())),
+                    categoryItem(imgCloth, clothing,()=>Get.to(()=>const DonateClothScreen())),
+                    categoryItem(imgMedical, medical,()=>Get.to(()=>const DonateForMedicalScreen())),
+                    categoryItem(imgConstruction, shelter,()=>Get.to(()=>const DonateForConstructionScreen())),
                   ],
                 ),
               ),

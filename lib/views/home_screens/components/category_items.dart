@@ -2,26 +2,30 @@
 
 
 import '../../../consts/consts.dart';
+import '../../../reusable_widgets/our_text.dart';
 
-Widget categoryItem(String path, String label) {
+Widget categoryItem(String path, String label,VoidCallback onTap,) {
   return Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      Container(
-        height: 55,
-        width: 55,
-        decoration: BoxDecoration(
-          color: Colors.blue.shade50,
-          borderRadius: BorderRadius.circular(8),
-          image: DecorationImage(
-            image: AssetImage(path),
-            fit: BoxFit.cover,
+      GestureDetector(
+        onTap: onTap,
+        child: Container(
+          height: 55,
+          width: 55,
+          decoration: BoxDecoration(
+            color: Colors.blue.shade50,
+            borderRadius: BorderRadius.circular(8),
+            image: DecorationImage(
+              image: AssetImage(path),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),
       const SizedBox(height: 2),
-      const Text("Donate",
-          style: TextStyle(fontSize: 9, fontWeight: FontWeight.w500)),
+        ourText(color: textColor, title: donate, textSize: 9),
+
       Flexible(
         child: Text(label,
           style: const TextStyle(fontSize: 9),

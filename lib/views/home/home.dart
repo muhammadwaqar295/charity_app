@@ -5,7 +5,6 @@ import 'package:charity_app/views/notificatons/notification_screen.dart';
 import 'package:charity_app/views/profile/profile_screen.dart';
 import 'package:get/get.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-
 import '../../controllers/home_contoller.dart';
 import '../home_screens/home_screen.dart';
 

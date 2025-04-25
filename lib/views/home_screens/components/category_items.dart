@@ -2,6 +2,7 @@
 
 
 import '../../../consts/consts.dart';
+import '../../../reusable_widgets/our_text.dart';
 
 Widget categoryItem(String path, String label) {
   return Column(
@@ -20,8 +21,8 @@ Widget categoryItem(String path, String label) {
         ),
       ),
       const SizedBox(height: 2),
-      const Text("Donate",
-          style: TextStyle(fontSize: 9, fontWeight: FontWeight.w500)),
+        ourText(color: textColor, title: donate, textSize: 9),
+
       Flexible(
         child: Text(label,
           style: const TextStyle(fontSize: 9),

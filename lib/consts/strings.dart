@@ -55,6 +55,7 @@ const details= "Details:";
 const about= "about:";
 const events= "event:";
 const admin= "event:";
+const donate= "Donate:";
 
 
 

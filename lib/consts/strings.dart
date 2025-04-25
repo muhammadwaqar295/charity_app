@@ -65,6 +65,16 @@ const eidRelief= "Eid Relief";
 const urgentNeedFor= "Urgent need for medical treatment...";
 
 
+// history page
+const abbasTuri = "Abbas Turi";
+const time = "15:36 - 8/6/2021";
+const amount ="1.000.000đ";
+const successful ="Successful";
+const lalAkbar ="Lal Akbar";
+const izaz ="Izaz";
+const failed ="Failed";
+
+
 const searchCharityCampaigns= "Search Charity Campaigns";
 const requesterDetails=
     "I am a poor man struggling to make ends meet. Life has been incredibly difficult, and now I am facing a medical issue that I cannot afford to treat. "

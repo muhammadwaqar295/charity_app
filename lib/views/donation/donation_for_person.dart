@@ -3,6 +3,9 @@ import 'package:charity_app/consts/images.dart';
 import 'package:charity_app/reusable_widgets/our_back_button.dart';
 import 'package:charity_app/reusable_widgets/our_button.dart';
 import 'package:charity_app/reusable_widgets/profile_circle_avatar.dart';
+import 'package:charity_app/views/donation/donation_screen.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import '../../reusable_widgets/our_text.dart';
 
 class DonationDetailsScreen extends StatelessWidget {
@@ -121,7 +124,9 @@ class DonationDetailsScreen extends StatelessWidget {
               const SizedBox(height: 20),
 
               ourButton(
-                  onPress: (){},
+                  onPress: (){
+                    Get.to(()=>const DonationScreen());
+                  },
                   color: yellowColor
                   , textColor: blackColor,
                   title: donateNow)

@@ -42,6 +42,21 @@ const clothing= "Clothing";
 const medical= "Medical";
 const shelter= "Shelter";
 const compin= "Compin";
+const ok= "Ok";
+const paymentMethod= "Payment Method";
+const paymentWithStripe= "PAY WITH STRIPE";
+const creditCard= "Credit Card";
+const enterCardNumber= "Enter Card Number";
+const cardNumber= "Card Number";
+const MMYY= "MM / YY";
+const qurban= "Qurban";
+const CVC= "CVC";
+const zakat= "Zakat";
+const sadaqah= "Sadaqah";
+const fidya= "Fidya";
+const fitrana= "Fitrana";
+const selectCategory= "Select Category";
+const generalDonation= "General Donation";
 
 const editProfile= "Edit Profile";
 const foodSupport= "Food Support";
@@ -49,6 +64,7 @@ const ramadanSupport= "Ramadan Support";
 const clothingHelp= "Clothing Help";
 const needAmount= "Need Amount:  ";
 const PKR= "5000 PKR";
+const enterAmount= "Enter Amount";
 const donateNow= "Donate Now";
 const daysLeft= "10 days left";
 const details= "Details:";
@@ -56,6 +72,7 @@ const about= "about:";
 const events= "event:";
 const admin= "event:";
 const donate= "Donate:";
+const amountP= "Amount:";
 const cancel= "Cancel";
 const  addFoodItems=  "Add Food Items";
 const  addFoods=  "Add Food";
@@ -65,6 +82,8 @@ const  addTime=  "Add Time";
 const availabilityTime=  "Availability Time";
 const  description=  "Description";
 const  addDescription=  " Add Description";
+const  donationDetails=  "Donation Details";
+const  donationCategories=  "Donation Categories";
 
 
 

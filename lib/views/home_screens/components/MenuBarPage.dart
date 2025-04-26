@@ -1,8 +1,12 @@
-import 'package:charity_app/reusable_widgets/our_text.dart';
-import 'package:flutter/material.dart';
-import 'package:charity_app/consts/colors.dart';
+import 'package:charity_app/Events/eventsScreen.dart';
 import 'package:charity_app/consts/consts.dart';
-import 'package:charity_app/consts/images.dart';
+import 'package:charity_app/views/history/history_screen.dart';
+import 'package:charity_app/views/home_screens/home_screen.dart';
+import 'package:charity_app/views/notificatons/notification_screen.dart';
+import 'package:charity_app/views/profile/profile_screen.dart';
+import 'package:flutter/material.dart';
+
+import '../../../reusable_widgets/our_text.dart';
 
 class MenuBarPage extends StatelessWidget {
   @override
@@ -10,55 +14,58 @@ class MenuBarPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Right side tap area (transparent)
+          // Transparent area on right
           Positioned.fill(
-            left: 280, // Start after menu width
+            left: 250,
             child: GestureDetector(
               onTap: () {
-                Navigator.pop(context); // 👈 close the menu
+                Navigator.pop(context);
               },
-              child: Container(
-                color: Colors.transparent, // Fully transparent overlay
-              ),
+              child: Container(color: Colors.transparent),
             ),
           ),
 
-          // Menu on the left
+          // Menu on left
           Align(
             alignment: Alignment.centerLeft,
             child: Container(
-              width: 280,
+              width: 250,
               height: double.infinity,
               color: whiteColor,
-              child: ListView(
-                padding: EdgeInsets.zero,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    children: [
-                      SizedBox(height: 8),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 32.58),
-                        child: Image.asset(
-                          splashImg,
-                          width: 214.82,
-                          height: 158.82,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                       ourText(color: yellowColor,title: charity, textSize: 22),
+                  // Space for Status Bar
+                  SizedBox(height: MediaQuery.of(context).padding.top),
 
-                      SizedBox(height: 12),
-                    ],
+                  // Top Orange Title
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(vertical: 50), // you can increase/decrease this
+                    color: yellowColor,
+                    child: Center(
+                        child: ourText(
+                          color: whiteColor, // Text color
+                          title: charity, // Text content
+                          textSize: 26, // Text size
+                        ),
+                    ),
                   ),
-                  menuItem(icHome, home),
-                  menuItem(icProfile, profile),
-                  menuItem(icHistory, history),
-                  menuItem(icNotification, notification),
-                  menuItem(icAbout, about),
-                  menuItem(icLogout, logout),
-                  menuItem(icEvent, events),
-                  menuItem(icAdmin, admin),
+                  Expanded(
+                    child: ListView(
+                      padding: EdgeInsets.zero,
+                      children: [
+                        menuItem(context, Icons.home, home, HomeScreen()),
+                        menuItem(context, Icons.person, profile, ProfileScreen()),
+                        menuItem(context, Icons.history, history, HistoryScreen()),
+                        menuItem(context, Icons.notifications, notification, NotificationScreen()),
+                        menuItem(context, Icons.info_outline, about, AboutPage()),
+                        menuItem(context, Icons.logout, logout, LogoutPage()),
+                        menuItem(context, Icons.event, events, EventsScreen()),
+                        menuItem(context, Icons.admin_panel_settings, admin, AdminPage()),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -68,21 +75,64 @@ class MenuBarPage extends StatelessWidget {
     );
   }
 
-  Widget menuItem(String imagePath, String title) {
+  // Menu Item
+  Widget menuItem(BuildContext context, IconData icon, String title, Widget page) {
     return ListTile(
-      contentPadding: const EdgeInsets.only(left: 25),
-      leading: Image.asset(
-        imagePath,
-        width: 30,
-        height: 30,
-        errorBuilder: (context, error, stackTrace) {
-          return Icon(Icons.error, color: redColor);
-        },
+      leading: Icon(icon, color: Colors.black87),
+      title: Text(
+        title,
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
       ),
-      title: Text(title),
       onTap: () {
-        print('$title tapped');
+        Navigator.pop(context); // Close the menu
+
+        // Navigate to the respective page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => page),
+        );
       },
+    );
+  }
+}
+
+// Dummy Pages for Navigation
+
+
+class AboutPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("About")),
+      body: Center(
+        child: Text("Welcome to the About Page"),
+      ),
+    );
+  }
+}
+
+class LogoutPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Logout")),
+      body: Center(
+        child: Text("You have been logged out"),
+      ),
+    );
+  }
+}
+
+
+
+class AdminPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Admin")),
+      body: Center(
+        child: Text("Welcome to the Admin Page"),
+      ),
     );
   }
 }

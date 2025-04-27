@@ -69,7 +69,11 @@ const donateNow= "Donate Now";
 const daysLeft= "10 days left";
 const details= "Details:";
 const about= "about:";
-const events= "event:";
+const back= "Back";
+const eventss= "EVENTS";
+const eventsss= "event Screen:";
+
+
 const admin= "event:";
 const donate= "Donate:";
 const amountP= "Amount:";
@@ -111,3 +115,16 @@ const requesterDetails=
     "I have tried everything within my reach, but I am left with no choice but to ask for your help. Even a small contribution could make a huge difference and give me hope to get back on my feet.\n\n"
     "Please, if you can, support me in this difficult time. Your kindness and generosity could save my life. May Allah reward you for your kindness.\n\n"
     "Thank you.";
+
+const ramazanPackageDetails ="I am a poor man struggling to make ends meet. Life has been incredibly difficult, and now I am facing a medical issue that "
+    "I cannot afford to treat. The doctors have recommended treatment that costs around 5000 PKR, but my financial situation makes it impossible for me to arrange this amount."
+   "I have tried everything within my reach, but I am left with no choice but to ask for your help. Even a small contribution could make a huge difference and give me hope to get back on my feet."
+   "Please, if you can, support me in this difficult time. Your kindness and generosity could save my life. May Allah reward you for your kindness."
+   "Thank you.";
+const date ="27/04/2024";
+const ramazanPackage ="Ramazan Package";
+const eidPackage ="Eid Package";
+
+
+
+

@@ -57,7 +57,7 @@ class MenuBarPage extends StatelessWidget {
                   menuItem(icNotification, notification),
                   menuItem(icAbout, about),
                   menuItem(icLogout, logout),
-                  menuItem(icEvent, events),
+                  menuItem(icEvent, eventss),
                   menuItem(icAdmin, admin),
                 ],
               ),

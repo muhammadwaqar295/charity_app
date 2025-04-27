@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
        required Color color,
        required String title,
        required double textSize,
+        Color? bgColor,
 
 
 
@@ -11,10 +12,13 @@ import 'package:flutter/cupertino.dart';
     }){
      return Text(
     title,
+       textAlign: TextAlign.justify,
     style: TextStyle(
+      backgroundColor: bgColor,
     fontSize: textSize,
    fontWeight: FontWeight.bold,
     color: color,
+
   ),
    );
 

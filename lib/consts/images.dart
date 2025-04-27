@@ -12,6 +12,8 @@ const icEvent =         'assets/icons/Ic_event.png';
 const icLogout =        'assets/icons/Ic_logout.png';
 
 
+const imgramadanPackage = "assets/images/ramazanPackege.png" ;
+
 
 const imgProfile =  'assets/images/profile_img.png';
 const imgRequester =  'assets/images/requester_img.png';

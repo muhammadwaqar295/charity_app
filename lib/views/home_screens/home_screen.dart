@@ -7,7 +7,6 @@ import 'package:charity_app/views/donation/donate_food_screen.dart';
 import 'package:charity_app/views/donation/donate_for_construction_screen.dart';
 import 'package:charity_app/views/donation/donate_for_medical_screen.dart';
 import 'package:charity_app/views/donation/donation_for_person.dart';
-import 'package:charity_app/views/events/event_screen/events_screen.dart';
 import 'package:charity_app/views/home_screens/components/MenuBarPage.dart';
 import 'package:get/get.dart';
 
@@ -164,7 +163,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     const SizedBox(width: 12), // spacing from left edge
                     GestureDetector(
-                      onTap: (){Get.to(()=>EventsScreen());},
+                 /*     onTap: (){Get.to(()=>EventsScreen());},*/
                         child: spacialCompaings(imgEid, eidRelief)),
                     const SizedBox(width: 12),
                     spacialCompaings(imgRamazan, ramadanSupport),

@@ -68,13 +68,13 @@ const enterAmount= "Enter Amount";
 const donateNow= "Donate Now";
 const daysLeft= "10 days left";
 const details= "Details:";
-const about= "about:";
+const about= "About:";
 const back= "Back";
 const eventss= "EVENTS";
-const eventsss= "event Screen:";
+const eventsss= "Event Screen:";
 
 
-const admin= "event:";
+const admin= "Admin";
 const donate= "Donate:";
 const amountP= "Amount:";
 const cancel= "Cancel";

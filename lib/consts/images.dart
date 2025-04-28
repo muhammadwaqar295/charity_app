@@ -24,4 +24,8 @@ const imgConstruction =  'assets/images/construction_img.png';
 const imgFood =  'assets/images/food_img.png';
 const imgMedical =  'assets/images/medical_img.png';
 const imgProfileSimple =  'assets/images/profile_simple.png';
+const imgEidPackage =  'assets/images/eid_package.png';
+const imgRamazanPackage =  'assets/images/ramzan_package.png';
+
+
 

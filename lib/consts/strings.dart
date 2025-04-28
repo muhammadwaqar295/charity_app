@@ -1,6 +1,3 @@
-
-
-
 const logout = "Log out";
 const signup = "Sign up";
 const appName = "Sign up";
@@ -27,6 +24,7 @@ const history = "History";
 const profile = "Profile";
 const notification = "Notification";
 const nameAbbas = "Name: Abbas";
+const events = "Events";
 
 
 const yourName = "Your Name";
@@ -42,29 +40,52 @@ const clothing= "Clothing";
 const medical= "Medical";
 const shelter= "Shelter";
 const compin= "Compin";
+const ok= "Ok";
+const paymentMethod= "Payment Method";
+const paymentWithStripe= "PAY WITH STRIPE";
+const creditCard= "Credit Card";
+const enterCardNumber= "Enter Card Number";
+const cardNumber= "Card Number";
+const MMYY= "MM / YY";
+const qurban= "Qurban";
+const CVC= "CVC";
+const zakat= "Zakat";
+const sadaqah= "Sadaqah";
+const fidya= "Fidya";
+const fitrana= "Fitrana";
+const selectCategory= "Select Category";
+const generalDonation= "General Donation";
 
 const editProfile= "Edit Profile";
 const foodSupport= "Food Support";
 const ramadanSupport= "Ramadan Support";
 const clothingHelp= "Clothing Help";
-const needAmount= "Need Amount:  ";
+const needAmount= "Need Amount: ";
 const PKR= "5000 PKR";
+const enterAmount= "Enter Amount";
 const donateNow= "Donate Now";
 const daysLeft= "10 days left";
 const details= "Details:";
-const about= "About:";
-const events= "Events:";
-const admin= "Admin:";
+const about= "about:";
+const back= "Back";
+const eventss= "EVENTS";
+const eventsss= "event Screen:";
+
+
+const admin= "event:";
 const donate= "Donate:";
+const amountP= "Amount:";
 const cancel= "Cancel";
-const  addFoodItems=  "Add Food Items";
-const  addFoods=  "Add Food";
-const  addCloths=  "Add Cloths";
-const  addClothItems=  "Add Cloth Items";
-const  addTime=  "Add Time";
-const availabilityTime=  "Availability Time";
-const  description=  "Description";
-const  addDescription=  " Add Description";
+const addFoodItems= "Add Food Items";
+const addFoods= "Add Food";
+const addCloths= "Add Cloths";
+const addClothItems= "Add Cloth Items";
+const addTime= "Add Time";
+const availabilityTime= "Availability Time";
+const description= "Description";
+const addDescription= " Add Description";
+const donationDetails= "Donation Details";
+const donationCategories= "Donation Categories";
 
 
 
@@ -92,3 +113,12 @@ const requesterDetails=
     "I have tried everything within my reach, but I am left with no choice but to ask for your help. Even a small contribution could make a huge difference and give me hope to get back on my feet.\n\n"
     "Please, if you can, support me in this difficult time. Your kindness and generosity could save my life. May Allah reward you for your kindness.\n\n"
     "Thank you.";
+
+const ramazanPackageDetails ="I am a poor man struggling to make ends meet. Life has been incredibly difficult, and now I am facing a medical issue that "
+    "I cannot afford to treat. The doctors have recommended treatment that costs around 5000 PKR, but my financial situation makes it impossible for me to arrange this amount."
+    "I have tried everything within my reach, but I am left with no choice but to ask for your help. Even a small contribution could make a huge difference and give me hope to get back on my feet."
+    "Please, if you can, support me in this difficult time. Your kindness and generosity could save my life. May Allah reward you for your kindness."
+    "Thank you.";
+const date ="27/04/2024";
+const ramazanPackage ="Ramazan Package";
+const eidPackage ="Eid Package";

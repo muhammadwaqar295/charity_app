@@ -1,12 +1,4 @@
-import 'package:charity_app/Events/eventsScreen.dart';
-import 'package:charity_app/consts/consts.dart';
-import 'package:charity_app/views/history/history_screen.dart';
-import 'package:charity_app/views/home_screens/home_screen.dart';
-import 'package:charity_app/views/notificatons/notification_screen.dart';
-import 'package:charity_app/views/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../../../reusable_widgets/our_text.dart';
 
 class MenuBarPage extends StatelessWidget {
   @override
@@ -31,38 +23,49 @@ class MenuBarPage extends StatelessWidget {
             child: Container(
               width: 250,
               height: double.infinity,
-              color: whiteColor,
+              color: Colors.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Space for Status Bar
+                  // Space for Status Bar (wifi, battery, etc.)
                   SizedBox(height: MediaQuery.of(context).padding.top),
 
-                  // Top Orange Title
+                  // Top Orange Title with CURVED right corner
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.symmetric(vertical: 50), // you can increase/decrease this
-                    color: yellowColor,
+                    padding: EdgeInsets.symmetric(vertical: 70),
+                    decoration: BoxDecoration(
+                      color: Colors.orange,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(40),
+                      ),
+                    ),
                     child: Center(
-                        child: ourText(
-                          color: whiteColor, // Text color
-                          title: charity, // Text content
-                          textSize: 26, // Text size
+                      child: Text(
+                        "Charity",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
                         ),
+                      ),
                     ),
                   ),
+
+                  // List of menu items
                   Expanded(
                     child: ListView(
                       padding: EdgeInsets.zero,
                       children: [
-                        menuItem(context, Icons.home, home, HomeScreen()),
-                        menuItem(context, Icons.person, profile, ProfileScreen()),
-                        menuItem(context, Icons.history, history, HistoryScreen()),
-                        menuItem(context, Icons.notifications, notification, NotificationScreen()),
-                        menuItem(context, Icons.info_outline, about, AboutPage()),
-                        menuItem(context, Icons.logout, logout, LogoutPage()),
-                        menuItem(context, Icons.event, events, EventsScreen()),
-                        menuItem(context, Icons.admin_panel_settings, admin, AdminPage()),
+                        menuItem(Icons.home, "Home"),
+                        menuItem(Icons.person, "Profile"),
+                        menuItem(Icons.history, "History"),
+                        menuItem(Icons.notifications, "Notification"),
+                        menuItem(Icons.info_outline, "About"),
+                        menuItem(Icons.logout, "Logout"),
+                        menuItem(Icons.event, "Events"),
+                        menuItem(Icons.admin_panel_settings, "Admin"),
                       ],
                     ),
                   ),
@@ -75,64 +78,15 @@ class MenuBarPage extends StatelessWidget {
     );
   }
 
-  // Menu Item
-  Widget menuItem(BuildContext context, IconData icon, String title, Widget page) {
+  // Menu Item Widget without onTap
+  Widget menuItem(IconData icon, String title) {
     return ListTile(
       leading: Icon(icon, color: Colors.black87),
       title: Text(
         title,
         style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
       ),
-      onTap: () {
-        Navigator.pop(context); // Close the menu
-
-        // Navigate to the respective page
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => page),
-        );
-      },
-    );
-  }
-}
-
-// Dummy Pages for Navigation
-
-
-class AboutPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("About")),
-      body: Center(
-        child: Text("Welcome to the About Page"),
-      ),
-    );
-  }
-}
-
-class LogoutPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Logout")),
-      body: Center(
-        child: Text("You have been logged out"),
-      ),
-    );
-  }
-}
-
-
-
-class AdminPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Admin")),
-      body: Center(
-        child: Text("Welcome to the Admin Page"),
-      ),
+      // No onTap here
     );
   }
 }

@@ -15,11 +15,11 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     var controller = Get.put(HomeController());
 
-    var navBody = const [
-      HomeScreen(),
-      HistoryScreen(),
+    var navBody = [
+      const HomeScreen(),
+      const HistoryScreen(),
       NotificationScreen(),
-      ProfileScreen(),
+      const ProfileScreen(),
     ];
 
     var navItems = [

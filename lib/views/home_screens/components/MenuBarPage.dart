@@ -64,7 +64,7 @@ class MenuBarPage extends StatelessWidget {
                         menuItem(Icons.home, home, context, const Home()),
                         menuItem(Icons.person, profile, context, const ProfileScreen()),
                         menuItem(Icons.history, history, context, const HistoryScreen()),
-                        menuItem(Icons.notifications, notification, context, const NotificationScreen()),
+                        menuItem(Icons.notifications, notification, context, NotificationScreen()),
                         menuItem(Icons.info_outline, about, context, AboutPage()),
                         menuItem(Icons.logout, logout, context, const LoginScreen()),
                         menuItem(Icons.event, eventsss, context, const EventsScreen()),

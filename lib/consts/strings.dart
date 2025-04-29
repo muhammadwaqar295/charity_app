@@ -122,3 +122,12 @@ const ramazanPackageDetails ="I am a poor man struggling to make ends meet. Life
 const date ="27/04/2024";
 const ramazanPackage ="Ramazan Package";
 const eidPackage ="Eid Package";
+
+// notification Screen
+const title = "title";
+const subtitle = "Subtitle";
+const notificationtime ="time";
+const stutus ="Stutus";
+const personalDetail ="Personal Support Approved";
+const personalSubDettails = "Your Personal Support request has been approved!";
+const minago="5 min ago ";

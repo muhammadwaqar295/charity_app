@@ -1,4 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:charity_app/consts/consts.dart';
+import 'package:charity_app/reusable_widgets/our_text.dart';
+import 'package:charity_app/views/authentication/login_screen.dart';
+import 'package:charity_app/views/events/event_screen/events_screen.dart';
+import 'package:charity_app/views/history/history_screen.dart';
+import 'package:charity_app/views/notificatons/notification_screen.dart';
+import 'package:charity_app/views/profile/profile_screen.dart';
+import 'package:get/get.dart';
+import '../../home/home.dart';
 
 class MenuBarPage extends StatelessWidget {
   @override
@@ -27,29 +35,24 @@ class MenuBarPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Space for Status Bar (wifi, battery, etc.)
+                  // Space for Status Bar
                   SizedBox(height: MediaQuery.of(context).padding.top),
 
-                  // Top Orange Title with CURVED right corner
+                  // Top Orange Title with curved right corner
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.symmetric(vertical: 70),
-                    decoration: BoxDecoration(
+                    padding: const EdgeInsets.symmetric(vertical: 70),
+
+                    decoration: const BoxDecoration(
                       color: Colors.orange,
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(40),
                       ),
                     ),
+
                     child: Center(
-                      child: Text(
-                        "Charity",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                        ),
-                      ),
+                      child:ourText(color: whiteColor, title: charity, textSize: 26),
+
                     ),
                   ),
 
@@ -58,14 +61,14 @@ class MenuBarPage extends StatelessWidget {
                     child: ListView(
                       padding: EdgeInsets.zero,
                       children: [
-                        menuItem(Icons.home, "Home"),
-                        menuItem(Icons.person, "Profile"),
-                        menuItem(Icons.history, "History"),
-                        menuItem(Icons.notifications, "Notification"),
-                        menuItem(Icons.info_outline, "About"),
-                        menuItem(Icons.logout, "Logout"),
-                        menuItem(Icons.event, "Events"),
-                        menuItem(Icons.admin_panel_settings, "Admin"),
+                        menuItem(Icons.home, home, context, const Home()),
+                        menuItem(Icons.person, profile, context, const ProfileScreen()),
+                        menuItem(Icons.history, history, context, const HistoryScreen()),
+                        menuItem(Icons.notifications, notification, context, const NotificationScreen()),
+                        menuItem(Icons.info_outline, about, context, AboutPage()),
+                        menuItem(Icons.logout, logout, context, const LoginScreen()),
+                        menuItem(Icons.event, eventsss, context, const EventsScreen()),
+                        menuItem(Icons.admin_panel_settings, admin, context, AdminPage()),
                       ],
                     ),
                   ),
@@ -78,15 +81,41 @@ class MenuBarPage extends StatelessWidget {
     );
   }
 
-  // Menu Item Widget without onTap
-  Widget menuItem(IconData icon, String title) {
+  // Updated Menu Item Widget with onTap to navigate
+  Widget menuItem(IconData icon, String title, BuildContext context, Widget screen) {
     return ListTile(
-      leading: Icon(icon, color: Colors.black87),
-      title: Text(
-        title,
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-      ),
-      // No onTap here
+      leading: Icon(icon, color: blackColor),
+      title:ourText(color: blackColor, title: title, textSize: 16),
+
+      onTap: () {
+        Get.to(()=>screen);
+      },
     );
+  }
+}
+
+
+
+
+
+
+
+
+
+class AboutPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(appBar: AppBar(title: const Text("About Page")));
+  }
+}
+
+
+
+
+
+class AdminPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(appBar: AppBar(title: const Text("Admin Page")));
   }
 }

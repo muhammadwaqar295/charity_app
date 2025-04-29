@@ -1,5 +1,3 @@
-
-
 import '../../../consts/consts.dart';
 
 Widget spacialCompaings(String path, String label) {

@@ -1,6 +1,4 @@
 import 'package:charity_app/consts/consts.dart';
-
-import '../../reusable_widgets/our_back_button.dart';
 import '../../reusable_widgets/our_text.dart';
 import 'components/histroyitems.dart';
 
@@ -16,7 +14,6 @@ class HistoryScreen extends StatelessWidget {
           children: [
             Row(
               children: [
-                ourBackButton(context),
                 Expanded(
                   child: Center(
                     child: ourText(

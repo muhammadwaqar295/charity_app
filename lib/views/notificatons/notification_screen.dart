@@ -2,6 +2,7 @@ import 'package:charity_app/consts/colors.dart';
 import 'package:flutter/material.dart';
 
 class NotificationScreen extends StatelessWidget {
+
   final List<Map<String, String>> notifications = [
     {
       "title": "Personal Support Approved",

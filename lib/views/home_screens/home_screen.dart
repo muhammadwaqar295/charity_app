@@ -8,6 +8,8 @@ import 'package:charity_app/views/donation/donate_for_construction_screen.dart';
 import 'package:charity_app/views/donation/donate_for_medical_screen.dart';
 import 'package:charity_app/views/donation/donation_for_person.dart';
 import 'package:charity_app/views/home_screens/components/MenuBarPage.dart';
+import 'package:charity_app/views/notificatons/notification_screen.dart';
+import 'package:charity_app/views/profile/profile_screen.dart';
 import 'package:get/get.dart';
 
 import 'components/category_items.dart';
@@ -42,12 +44,18 @@ class HomeScreen extends StatelessWidget {
 
                   Row(
                     children: [
-                      ourCircleAvatar(radius: 18,fallbackIcon: Icons.notifications_none),
+                      GestureDetector(child: ourCircleAvatar(radius: 18,fallbackIcon: Icons.notifications_none),
+                      onTap: (){
+                        Get.to(()=>NotificationScreen());
+                      },),
 
 
                       const SizedBox(width: 8),
 
-                      ourCircleAvatar(radius: 18,image: imgProfile),
+                      GestureDetector(child: ourCircleAvatar(radius: 18,image: imgProfile),
+                      onTap: (){
+                        Get.to(()=>const ProfileScreen());
+                      },),
 
 
                     ],

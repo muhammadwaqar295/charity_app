@@ -1,8 +1,6 @@
 import 'package:charity_app/views/authentication/signup_screen.dart';
 import 'package:charity_app/views/home/home.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../consts/consts.dart';
 import '../../reusable_widgets/our_button.dart';
 import '../../reusable_widgets/our_button2.dart';
@@ -102,6 +100,7 @@ class LoginScreen extends StatelessWidget {
                           ),
 
                           // Login Button
+
                   ourButton(
                 onPress: (){
                   Get.to(()=> const Home());

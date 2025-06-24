@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "742638003125",
+    "project_id": "fypproject-65a72",
+    "storage_bucket": "fypproject-65a72.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742638003125:android:e8e237e84573f6eb2faffc",
+        "android_client_info": {
+          "package_name": "com.example.charity_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg1pkXwBnjQi8d5ZE1WC_ftXtOM4SOPkw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

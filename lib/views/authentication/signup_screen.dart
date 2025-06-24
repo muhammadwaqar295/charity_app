@@ -5,8 +5,12 @@ import 'package:charity_app/reusable_widgets/our_text.dart';
 import 'package:charity_app/reusable_widgets/our_textField.dart';
 import 'package:charity_app/views/authentication/login_screen.dart';
 import 'package:charity_app/views/authentication/signup_requester.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import '../../controllers/auth_controller.dart';
 import '../../reusable_widgets/user_type_selector.dart .dart';
+import '../home/home.dart';
 
 
 class SignupScreen extends StatefulWidget {
@@ -18,6 +22,15 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   String? selectedUserType;
+
+
+  bool? isCheck=false;
+  var controller=Get.put(AuthController());
+
+  var nameController=TextEditingController();
+  var emailController=TextEditingController();
+  var passwordController=TextEditingController();
+  var phoneController=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -159,6 +172,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                           // Full Name TextField
                           ourTextField(
+                            controller: nameController,
                               title: name,
                               hint: nameHint,
                               isPass: false
@@ -170,6 +184,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                           // Password TextField
                           ourTextField(
+                            controller: passwordController,
                             title: password,
                             hint: passwordHint,
                             isPass: true
@@ -180,6 +195,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                           // Email TextField
                           ourTextField(
+                            controller: emailController,
                               title: email,
                               hint: emailHint,
                               isPass: false
@@ -190,6 +206,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                           // Phone TextField
                           ourTextField(
+                            controller: phoneController,
                               title: phone,
                               hint: phoneHint,
                               isPass: false
@@ -199,10 +216,71 @@ class _SignupScreenState extends State<SignupScreen> {
 
                           // Sign Up Button
                           ourButton(
-                              onPress: (){},
-                              color: yellowColor,
-                              textColor: whiteColor,
-                              title: signup),
+                            onPress: () async {
+                              controller.isloading(true);
+
+
+                              if (nameController.text.isEmpty ||
+                                  emailController.text.isEmpty ||
+                                  passwordController.text.isEmpty ||
+                                  phoneController.text.isEmpty ||
+                                  selectedUserType == null) {
+                                Fluttertoast.showToast(
+                                  msg: "Please fill all fields",
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                );
+                                controller.isloading(false);
+                                return;
+                              }
+
+                              try {
+                                //call method
+                                UserCredential? value = await controller.signupMethod(
+                                  context: context,
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                );
+                               // save data in firebase
+                                if (value != null && value.user != null) {
+                                  await controller.storeUserData(
+                                    nameController.text,
+                                    passwordController.text,
+                                    emailController.text,
+                                  );
+
+                                  Fluttertoast.showToast(
+                                    msg: "Signup successful ✅",
+                                    backgroundColor: Colors.green,
+                                    textColor: Colors.white,
+                                  );
+
+                                  controller.isloading(false);
+                                  Get.offAll(() => const Home());
+                                }
+                                else {
+                                  Fluttertoast.showToast(
+                                    msg: "Signup failed! User is null",
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                  );
+                                  controller.isloading(false);
+                                }
+                              } catch (e) {
+                                controller.isloading(false);
+                                print("ERROR: $e");
+                                Fluttertoast.showToast(
+                                  msg: e.toString(),
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                );
+                              }
+                            },
+                            color: yellowColor,
+                            textColor: whiteColor,
+                            title: signup,
+                          ),
+
                         ],
                       ),
                     ),

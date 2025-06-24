@@ -1,8 +1,16 @@
 import 'package:charity_app/views/splach_screen/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'consts/consts.dart';
 
-void main() {
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized(); // Ensures bindings are initialized
+  await Firebase.initializeApp(); // Initializes Firebase
+
+  print("🔥 Firebase is connected!");
+
+
+
   runApp(const MyApp());
 }
 

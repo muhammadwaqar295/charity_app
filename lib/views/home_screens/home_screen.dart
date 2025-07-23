@@ -6,7 +6,7 @@ import 'package:charity_app/views/donation/donate_cloth_screen.dart';
 import 'package:charity_app/views/donation/donate_food_screen.dart';
 import 'package:charity_app/views/donation/donate_for_construction_screen.dart';
 import 'package:charity_app/views/donation/donate_for_medical_screen.dart';
-import 'package:charity_app/views/donation/donation_for_person.dart';
+import 'package:charity_app/views/donation/donation_details_screen.dart';
 import 'package:charity_app/views/home_screens/components/MenuBarPage.dart';
 import 'package:charity_app/views/notificatons/notification_screen.dart';
 import 'package:charity_app/views/profile/profile_screen.dart';

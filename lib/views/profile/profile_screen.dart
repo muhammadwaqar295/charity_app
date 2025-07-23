@@ -1,13 +1,12 @@
 import 'package:charity_app/consts/consts.dart';
+import 'package:charity_app/consts/firebase_const.dart';
 import 'package:charity_app/consts/images.dart';
-import 'package:charity_app/reusable_widgets/profile_circle_avatar.dart';
 import 'package:charity_app/views/profile/edit_profile_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:charity_app/consts/colors.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import 'package:charity_app/reusable_widgets/our_button.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import '../../services/firestore_services.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -38,44 +37,49 @@ class ProfileScreen extends StatelessWidget {
 
                 const SizedBox(height: 20),
 
-                // Profile Image Placeholder
-           ourCircleAvatar(radius: 50, image: imgProfile),
-               /* const CircleAvatar(
-                  radius: 50,
-                  backgroundColor: Colors.grey,
-                  child: Icon(Icons.person, size: 60, color: Colors.white),
-                ),*/
+                StreamBuilder(
+                  stream: FiretoreServices.getUser(currentUser!.uid),
+                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    }
+                    if (snapshot.hasError || !snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                      return const Text(no_profile_data_found);
+                    }
 
-                const SizedBox(height: 30),
+                    var data = snapshot.data!.docs[0];
+                    String imageUrl = data['imgUrl'] ?? imgProfile;
 
-                // Display Name
-                profileInfoLabel(yourName),
-                profileInfoBox(noorJan),
 
-                const SizedBox(height: 15),
+                    return Column(
+                      children: [
+                        CircleAvatar( // Use direct CircleAvatar to test
+                          radius: 50,
+                          backgroundImage: NetworkImage(imageUrl),
+                          backgroundColor: Colors.grey.shade200,
+                        ),
+                        const SizedBox(height: 30),
+                        profileInfoLabel(yourName),
+                        profileInfoBox(data['name'] ?? ''),
+                        const SizedBox(height: 15),
+                        profileInfoLabel(yourEmailAddress),
+                        profileInfoBox(data['email'] ?? ''),
+                        const SizedBox(height: 30),
+                        ourButton(
+                          onPress: () {
+                            Get.to(() => const EditProfileScreen());
+                          },
+                          color: yellowColor,
+                          textColor: whiteColor,
+                          title: editProfile,
+                        ),
+                      ],
+                    );
+                  },
+                ),
 
-                // Display Email
-                profileInfoLabel(yourEmailAddress),
-                profileInfoBox(noorGmail),
 
-                const SizedBox(height: 15),
 
-                // Display Phone
-                profileInfoLabel(yourPhone),
-                profileInfoBox(phoneNo),
-
-                const SizedBox(height: 30),
-
-                // Edit Profile Button
-            ourButton(
-              onPress: () {
-
-               Get.to(()=> const EditProfileScreen());
-              },
-              color: yellowColor,
-              textColor: whiteColor,
-              title: editProfile,
-            ),
 
               ],
             ),

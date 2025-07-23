@@ -20,12 +20,12 @@ class AuthController extends GetxController {
         email: emailController.text,
         password: passwordController.text,
       );
-      print("LOGIN: user ID = ${userCredential.user?.uid}");
+      //print("LOGIN: user ID = ${userCredential.user?.uid}");
     } on FirebaseAuthException catch (e) {
-      print("LOGIN ERROR: ${e.message}");
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.message ?? "Login failed")),
-      );
+     /* print("LOGIN ERROR: ${e.message}");*/
+      /*ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Login failed")),
+      );*/
     }
     return userCredential;
   }
@@ -41,22 +41,19 @@ class AuthController extends GetxController {
         email: email,
         password: password,
       );
-
-      print("SIGNUP: User created = ${userCredential.user?.uid}");
-
       if (userCredential.user == null) {
         throw FirebaseAuthException(
             code: 'null-user', message: "User is null after signup");
       }
-
       return userCredential;
-    } on FirebaseAuthException catch (e) {
-      print("SIGNUP ERROR: ${e.message}");
+    }
+    on FirebaseAuthException catch (e) {
+     // print("SIGNUP ERROR: ${e.message}");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.message ?? "Signup failed")),
       );
     } catch (e) {
-      print("SIGNUP EXCEPTION: $e");
+     // print("SIGNUP EXCEPTION: $e");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Unexpected error: $e")),
       );
@@ -68,7 +65,7 @@ class AuthController extends GetxController {
   Future<void> storeUserData(String name, String password, String email) async {
     User? currentUser = auth.currentUser;
 
-    print("STORE USER: current user = ${currentUser?.uid}");
+   // print("STORE USER: current user = ${currentUser?.uid}");
 
     if (currentUser != null) {
       await firestore.collection("users").doc(currentUser.uid).set({
@@ -80,8 +77,9 @@ class AuthController extends GetxController {
         'cart_count': "00",
         'wishlist_count': "00",
         'order_count': "00",
+        'imgUrl': "",
       });
-      print("STORE USER: Data saved for ${currentUser.uid}");
+      //print("STORE USER: Data saved for ${currentUser.uid}");
     } else {
       throw Exception("User is null while storing data");
     }

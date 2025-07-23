@@ -131,3 +131,4 @@ const stutus ="Stutus";
 const personalDetail ="Personal Support Approved";
 const personalSubDettails = "Your Personal Support request has been approved!";
 const minago="5 min ago ";
+const no_profile_data_found="No profile data found.";

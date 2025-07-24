@@ -7,7 +7,7 @@ void main()async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensures bindings are initialized
   await Firebase.initializeApp(); // Initializes Firebase
 
-  print("🔥 Firebase is connected!");
+
 
 
 

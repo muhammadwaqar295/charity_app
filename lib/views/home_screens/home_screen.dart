@@ -10,6 +10,7 @@ import 'package:charity_app/views/donation/donation_details_screen.dart';
 import 'package:charity_app/views/home_screens/components/MenuBarPage.dart';
 import 'package:charity_app/views/notificatons/notification_screen.dart';
 import 'package:charity_app/views/profile/profile_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import 'components/category_items.dart';
@@ -92,37 +93,63 @@ class HomeScreen extends StatelessWidget {
 
               ),
               const SizedBox(height: 8),
-              LayoutBuilder(
-                builder: (context, constraints) {
-                  final itemWidth = (constraints.maxWidth - 8) / 2;
+              StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance.collection('donation_compaigns').snapshots(),
+                builder: (context, snapshot) {
+                  print("snapshot state 👉 ${snapshot.connectionState}");
+                  print("snapshot hasData 👉 ${snapshot.hasData}");
+                  print("snapshot hasError 👉 ${snapshot.hasError}");
+                  print("snapshot error 👉 ${snapshot.error}");
+                  print("docs count 👉 ${snapshot.data?.docs.length}");
+
+                  if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  final docs = snapshot.data?.docs;
+                  if (docs == null || docs.isEmpty) {
+                    return const Text("No donation campaigns found.");
+                  }
+
+                  final campaigns = docs.map((doc) {
+                    final data = doc.data() as Map<String, dynamic>;
+                    print("Campaign doc data 👉 $data");
+                    return DonationCampaignModel.fromMap(data, doc.id);
+                  }).toList();
+
+                  print("campaigns parsed 👉 ${campaigns.length}");
+
                   return GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 4,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    itemCount: campaigns.length,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 8,
                       mainAxisSpacing: 8,
-                      childAspectRatio: itemWidth / (itemWidth * 0.99),
+                      childAspectRatio: 0.98,
                     ),
-
                     itemBuilder: (context, index) {
+                      final campaign = campaigns[index];
                       return GestureDetector(
-                        onTap: () {
-
-                          Get.to(()=>const DonationDetailsScreen());
-
-                        },
+                        onTap: () => Get.to(() => DonationDetailsScreen(campaign: campaign)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              height: itemWidth * 0.65,
+                              height: 100,
                               decoration: BoxDecoration(
                                 border: Border.all(color: yellowColor, width: 1.5),
                                 borderRadius: BorderRadius.circular(8),
-                                image: const DecorationImage(
-                                  image: AssetImage(imgRequester),
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                      campaign.imageUrls.isNotEmpty
+                                          ? campaign.imageUrls[0]
+                                          : 'https://via.placeholder.com/150'
+                                  ),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -130,21 +157,15 @@ class HomeScreen extends StatelessWidget {
                             const SizedBox(height: 4),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 2),
-                              child: ourText(
-                                color: blackColor,
-                                title: medicalSupport,
-                                textSize: 12,
-                              ),
+                              child: ourText(color: blackColor, title: campaign.title, textSize: 12),
                             ),
-                            const Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 2),
-                                child: Text(
-                                  urgentNeedFor,
-                                  style: TextStyle(fontSize: 10),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 2),
+                              child: Text(
+                                campaign.shortDescription,
+                                style: const TextStyle(fontSize: 10),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
@@ -216,4 +237,39 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+}
+
+class DonationCampaignModel {
+  final String id;
+  final String title;
+  final String shortDescription;
+  final String fullDescription;
+  final String needyName;
+  final String needAmount;
+  final int daysLeft;
+  final List<String> imageUrls;
+
+  DonationCampaignModel({
+    required this.id,
+    required this.title,
+    required this.shortDescription,
+    required this.fullDescription,
+    required this.needyName,
+    required this.needAmount,
+    required this.daysLeft,
+    required this.imageUrls,
+  });
+
+  factory DonationCampaignModel.fromMap(Map<String, dynamic> data, String docId) {
+    return DonationCampaignModel(
+      id: docId,
+      title: data['title'] ?? '',
+      shortDescription: data['short_description'] ?? '',
+      fullDescription: data['full_description'] ?? '',
+      needyName: data['needy_name'] ?? '',
+      needAmount: data['need_amount'] ?? '',
+      daysLeft: int.tryParse(data['days_left']?.toString() ?? '0') ?? 0,
+      imageUrls: List<String>.from(data['image'] ?? []),
+    );
+  }
 }

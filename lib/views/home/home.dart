@@ -31,20 +31,23 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      bottomNavigationBar: Obx(() => CurvedNavigationBar(
-        backgroundColor: Colors.transparent,
-        color: yellowColor,
-        buttonBackgroundColor: yellowColor,
-        height: 60,
-        index: controller.currentNavIndex.value,
-        animationCurve: Curves.easeInOut,
-        animationDuration: const Duration(milliseconds: 300),
-        items: navItems,
-        onTap: (index) {
-          controller.currentNavIndex.value = index;
-        },
-      )),
+      bottomNavigationBar: SafeArea( // 👈 Add this
+        child: Obx(() => CurvedNavigationBar(
+          backgroundColor: Colors.transparent,
+          color: yellowColor,
+          buttonBackgroundColor: yellowColor,
+          height: 60,
+          index: controller.currentNavIndex.value,
+          animationCurve: Curves.easeInOut,
+          animationDuration: const Duration(milliseconds: 300),
+          items: navItems,
+          onTap: (index) {
+            controller.currentNavIndex.value = index;
+          },
+        )),
+      ),
       body: Obx(() => navBody[controller.currentNavIndex.value]),
     );
+
   }
 }

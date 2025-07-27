@@ -72,11 +72,7 @@ class AuthController extends GetxController {
         'name': name,
         'password': password,
         'email': email,
-        'imageUrl': '',
         'id': currentUser.uid,
-        'cart_count': "00",
-        'wishlist_count': "00",
-        'order_count': "00",
         'imgUrl': "",
       });
       //print("STORE USER: Data saved for ${currentUser.uid}");

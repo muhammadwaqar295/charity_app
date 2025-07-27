@@ -7,6 +7,7 @@ import 'package:charity_app/consts/consts.dart';
   required Color color,
   required Color textColor,
   required String title,
+
     }){
    return ElevatedButton(
     style: ElevatedButton.styleFrom(

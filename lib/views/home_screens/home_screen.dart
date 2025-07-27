@@ -13,6 +13,8 @@ import 'package:charity_app/views/profile/profile_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
+import '../../consts/firebase_const.dart';
+import '../../services/firestore_services.dart';
 import 'components/category_items.dart';
 import 'components/spacial_event_compaigns.dart';
 
@@ -53,10 +55,39 @@ class HomeScreen extends StatelessWidget {
 
                       const SizedBox(width: 8),
 
-                      GestureDetector(child: ourCircleAvatar(radius: 18,image: imgProfile),
+
+                      // Inside HomeScreen's build method:
+                      StreamBuilder(
+                        stream: FiretoreServices.getUser(currentUser!.uid),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return ourCircleAvatar(radius: 18); // Placeholder while loading
+                          }
+
+                          if (!snapshot.hasData || !snapshot.data!.exists) {
+                            return ourCircleAvatar(radius: 18); // Default avatar if no data
+                          }
+
+                          var userData = snapshot.data!.data() as Map<String, dynamic>;
+                          String imageUrl = userData['imgUrl'] ?? imgProfile;
+
+                          return GestureDetector(
+                            onTap: () {
+                              Get.to(() => const ProfileScreen());
+                            },
+                            child: ourCircleAvatar(
+                              radius: 18,
+                              image: (imageUrl.isNotEmpty && imageUrl.startsWith('http')) ? imageUrl : imgProfile,
+                            ),
+                          );
+                        },
+                      ),
+
+
+                      /* GestureDetector(child: ourCircleAvatar(radius: 18,image: imgProfile),
                       onTap: (){
                         Get.to(()=>const ProfileScreen());
-                      },),
+                      },),*/
 
 
                     ],

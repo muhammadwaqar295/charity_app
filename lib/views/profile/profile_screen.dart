@@ -1,6 +1,7 @@
 import 'package:charity_app/consts/consts.dart';
 import 'package:charity_app/consts/firebase_const.dart';
 import 'package:charity_app/consts/images.dart';
+import 'package:charity_app/reusable_widgets/profile_circle_avatar.dart';
 import 'package:charity_app/views/profile/edit_profile_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
@@ -36,28 +37,35 @@ class ProfileScreen extends StatelessWidget {
                 ),
 
                 const SizedBox(height: 20),
-
                 StreamBuilder(
                   stream: FiretoreServices.getUser(currentUser!.uid),
-                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+
+
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const CircularProgressIndicator();
+                      return const Center(child: CircularProgressIndicator());
                     }
-                    if (snapshot.hasError || !snapshot.hasData || snapshot.data!.docs.isEmpty) {
+
+                    if (!snapshot.hasData || snapshot.hasError || !snapshot.data!.exists) {
                       return const Text(no_profile_data_found);
                     }
 
-                    var data = snapshot.data!.docs[0];
+                    var data = snapshot.data!.data() as Map<String, dynamic>;
                     String imageUrl = data['imgUrl'] ?? imgProfile;
 
 
                     return Column(
                       children: [
-                        CircleAvatar( // Use direct CircleAvatar to test
+
+                        ourCircleAvatar(
                           radius: 50,
-                          backgroundImage: NetworkImage(imageUrl),
-                          backgroundColor: Colors.grey.shade200,
+                          image: (imageUrl.isNotEmpty && imageUrl.startsWith('http'))
+                              ? imageUrl
+                              : imgProfile,
                         ),
+
+                        //ourCircleAvatar(radius: 50,image: imageUrl),
+
                         const SizedBox(height: 30),
                         profileInfoLabel(yourName),
                         profileInfoBox(data['name'] ?? ''),
@@ -67,7 +75,7 @@ class ProfileScreen extends StatelessWidget {
                         const SizedBox(height: 30),
                         ourButton(
                           onPress: () {
-                            Get.to(() => const EditProfileScreen());
+                            Get.to(() =>  EditProfileScreen(data:data));
                           },
                           color: yellowColor,
                           textColor: whiteColor,

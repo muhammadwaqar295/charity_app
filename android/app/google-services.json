@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "742638003125",
-    "project_id": "fypproject-65a72",
-    "storage_bucket": "fypproject-65a72.firebasestorage.app"
+    "project_number": "521625627679",
+    "project_id": "mart-3870a",
+    "storage_bucket": "mart-3870a.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:742638003125:android:e8e237e84573f6eb2faffc",
+        "mobilesdk_app_id": "1:521625627679:android:61be210bacb963bdaff92a",
         "android_client_info": {
           "package_name": "com.example.charity_app"
         }
@@ -15,7 +15,45 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBg1pkXwBnjQi8d5ZE1WC_ftXtOM4SOPkw"
+          "current_key": "AIzaSyAGhmyCynSIbSQen-ZeJVRwdcdlIqbP_go"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521625627679:android:4bed5830ab975dcdaff92a",
+        "android_client_info": {
+          "package_name": "com.example.e_mark_master"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGhmyCynSIbSQen-ZeJVRwdcdlIqbP_go"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521625627679:android:19811ad82c556076aff92a",
+        "android_client_info": {
+          "package_name": "com.example.emart_seller"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGhmyCynSIbSQen-ZeJVRwdcdlIqbP_go"
         }
       ],
       "services": {

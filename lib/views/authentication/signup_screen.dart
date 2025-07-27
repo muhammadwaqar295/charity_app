@@ -12,7 +12,6 @@ import '../../controllers/auth_controller.dart';
 import '../../reusable_widgets/user_type_selector.dart .dart';
 import '../home/home.dart';
 
-
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
@@ -22,15 +21,14 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   String? selectedUserType;
+  bool? isCheck = false;
 
+  final controller = Get.put(AuthController());
 
-  bool? isCheck=false;
-  var controller=Get.put(AuthController());
-
-  var nameController=TextEditingController();
-  var emailController=TextEditingController();
-  var passwordController=TextEditingController();
-  var phoneController=TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,28 +43,26 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 const SizedBox(height: 60),
 
-
-                // Charity Text (Yellow)
+                // Charity Text
                 ourText(
-                    color: yellowColor,
-                    title:  charity,
-                    textSize: 40),
+                  color: yellowColor,
+                  title: charity,
+                  textSize: 40,
+                ),
 
-
-                // Sign Up Text (Black)
+                // Sign Up Text
                 ourText(
-                    color: blackColor,
-                    title: signup,
-                    textSize: 22),
+                  color: blackColor,
+                  title: signup,
+                  textSize: 22,
+                ),
 
+                const SizedBox(height: 20),
 
-
-        const SizedBox(height: 20,),
-                // Stack for Side Lines & Signup Card
+                // Stack for Signup Card
                 Stack(
                   alignment: Alignment.center,
                   children: [
-                    // Signup Card
                     Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
@@ -84,17 +80,16 @@ class _SignupScreenState extends State<SignupScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          // User Type Selection
+                          // User Type Selector
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-
                               ourText(
-                                  color: textColor,
-                                  title: type,
-                                  textSize: 12),
-
-
+                                color: textColor,
+                                title: type,
+                                textSize: 12,
+                              ),
+                              const SizedBox(height: 8),
                               UserTypeSelector(
                                 selectedUserType: selectedUserType,
                                 onSelectionChanged: (type) {
@@ -103,122 +98,61 @@ class _SignupScreenState extends State<SignupScreen> {
                                   });
 
                                   if (type == requester) {
-                                    Get.to(()=> const SignupRequester());
-
+                                    Get.to(() => const SignupRequester());
                                   }
                                 },
                               ),
-
-
-/*                              Row(
-                                children: [
-                                  Expanded(
-                                    child: ChoiceChip(
-                                      label: const Text("Donars"),
-                                      selected: selectedUserType == "Donars",
-                                      onSelected: (bool selected) {
-                                        setState(() {
-                                          selectedUserType = selected ? "Donars" : null;
-                                        });
-                                      },
-                                      backgroundColor: Colors.grey[200],
-                                      selectedColor: Colors.amber[700],
-                                      labelStyle: TextStyle(
-                                        color: selectedUserType == "Donars"
-                                            ? Colors.white
-                                            : Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 10),
-                                  Expanded(
-                                    child: ChoiceChip(
-                                      label: const Text("Requester"),
-                                      selected: selectedUserType == "Requester",
-                                    *//*  onSelected: (bool selected) {
-                                        setState(() {
-                                          selectedUserType = selected ? "Requester" : null;
-                                        });
-                                      },*//*
-                                      // In SignUpPage's Requester ChoiceChip:
-                                      onSelected: (bool selected) {
-                                        setState(() {
-                                          selectedUserType = selected ? "Requester" : null;
-                                        });
-                                        if (selected) {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => const SignupRequester()),
-                                          );
-                                        }
-                                      },
-
-                                      backgroundColor: Colors.grey[200],
-                                      selectedColor: Colors.amber[700],
-                                      labelStyle: TextStyle(
-                                        color: selectedUserType == "Requester"
-                                            ? Colors.white
-                                            : Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )*/
                             ],
                           ),
 
                           const SizedBox(height: 15),
 
-                          // Full Name TextField
+                          // Name Field
                           ourTextField(
                             controller: nameController,
-                              title: name,
-                              hint: nameHint,
-                              isPass: false
-
+                            title: name,
+                            hint: nameHint,
+                            isPass: false,
                           ),
-
 
                           const SizedBox(height: 15),
 
-                          // Password TextField
+                          // Password Field
                           ourTextField(
                             controller: passwordController,
                             title: password,
                             hint: passwordHint,
-                            isPass: true
+                            isPass: true,
                           ),
-
 
                           const SizedBox(height: 20),
 
-                          // Email TextField
+                          // Email Field
                           ourTextField(
                             controller: emailController,
-                              title: email,
-                              hint: emailHint,
-                              isPass: false
+                            title: email,
+                            hint: emailHint,
+                            isPass: false,
                           ),
-
 
                           const SizedBox(height: 15),
 
-                          // Phone TextField
+                          // Phone Field
                           ourTextField(
                             controller: phoneController,
-                              title: phone,
-                              hint: phoneHint,
-                              isPass: false
+                            title: phone,
+                            hint: phoneHint,
+                            isPass: false,
                           ),
 
                           const SizedBox(height: 20),
 
-                          // Sign Up Button
-                          ourButton(
+                          // Signup Button
+                          Obx(() => controller.isloading.value
+                              ? const CircularProgressIndicator()
+                              : ourButton(
                             onPress: () async {
                               controller.isloading(true);
-
 
                               if (nameController.text.isEmpty ||
                                   emailController.text.isEmpty ||
@@ -226,7 +160,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   phoneController.text.isEmpty ||
                                   selectedUserType == null) {
                                 Fluttertoast.showToast(
-                                  msg: "Please fill all fields",
+                                  msg: please_fill_all_fields,
                                   backgroundColor: Colors.red,
                                   textColor: Colors.white,
                                 );
@@ -235,14 +169,16 @@ class _SignupScreenState extends State<SignupScreen> {
                               }
 
                               try {
-                                //call method
-                                UserCredential? value = await controller.signupMethod(
+                                UserCredential? value =
+                                await controller.signupMethod(
                                   context: context,
-                                  email: emailController.text,
-                                  password: passwordController.text,
+                                  email: emailController.text.trim(),
+                                  password:
+                                  passwordController.text.trim(),
                                 );
-                               // save data in firebase
-                                if (value != null && value.user != null) {
+
+                                if (value != null &&
+                                    value.user != null) {
                                   await controller.storeUserData(
                                     nameController.text,
                                     passwordController.text,
@@ -250,17 +186,16 @@ class _SignupScreenState extends State<SignupScreen> {
                                   );
 
                                   Fluttertoast.showToast(
-                                    msg: "Signup successful ✅",
+                                    msg: signup_successful,
                                     backgroundColor: Colors.green,
                                     textColor: Colors.white,
                                   );
 
                                   controller.isloading(false);
                                   Get.offAll(() => const Home());
-                                }
-                                else {
+                                } else {
                                   Fluttertoast.showToast(
-                                    msg: "Signup failed! User is null",
+                                    msg: signup_failed_User_is_null,
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                   );
@@ -268,7 +203,6 @@ class _SignupScreenState extends State<SignupScreen> {
                                 }
                               } catch (e) {
                                 controller.isloading(false);
-                                print("ERROR: $e");
                                 Fluttertoast.showToast(
                                   msg: e.toString(),
                                   backgroundColor: Colors.red,
@@ -279,8 +213,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             color: yellowColor,
                             textColor: whiteColor,
                             title: signup,
-                          ),
-
+                          )),
                         ],
                       ),
                     ),
@@ -291,13 +224,11 @@ class _SignupScreenState extends State<SignupScreen> {
 
                 // Sign In Button
                 ourButton2(
-                    onPress: (){
-                      Get.off(const LoginScreen());
-
-                    },
-                    title: signin),
-
-
+                  onPress: () {
+                    Get.off(const LoginScreen());
+                  },
+                  title: signin,
+                ),
               ],
             ),
           ),
@@ -306,15 +237,3 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

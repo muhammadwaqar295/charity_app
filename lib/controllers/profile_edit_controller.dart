@@ -8,92 +8,82 @@ import 'package:image_picker/image_picker.dart';
 import '../consts/consts.dart';
 import '../consts/firebase_const.dart';
 
-
-
-class ProfileEditController extends GetxController{
-
+class ProfileEditController extends GetxController {
   late QueryDocumentSnapshot snapshotData;
 
-  var profileImagePath=''.obs;
+  var profileImagePath = ''.obs;
+  var profileImageLink = '';
+  var isloading2 = false.obs;
+  var isloadingSave = false.obs;
+
+  var nameController = TextEditingController();
+  var oldpassController = TextEditingController();
+  var newpassController = TextEditingController();
+
+  // Update profile
+  updateProfile({password}) async {
+    try {
+      isloadingSave(true);
+
+      var store = fireFirestore.collection(userCollection).doc(currentUser!.uid);
+      await store.set({
+        'password': password,
+      }, SetOptions(merge: true));
 
 
-  var profileImageLink='';
-
-  var nameController=TextEditingController();
-  var oldpassController=TextEditingController();
-  var newpassController=TextEditingController();
-
-
-
-
-  updateProfile({
-    //name
-    password,})async{
-    var strore=fireFirestore.collection(userCollection).doc(currentUser!.uid);
-    await strore.set({
-      //'name':name,
-      'password':password,
-      //'imageUrl': imageUrl
-    },SetOptions(merge: true));
-
-
+    } catch (e) {
+      Fluttertoast.showToast(msg: "Failed to update profile");
+    } finally {
+      isloadingSave(false);
+    }
   }
 
 
-  //change pass
-  changeAuthPassword({email,password,newPassword})async{
-    final cred=EmailAuthProvider.credential(email: email, password: password);
-    //again login user
-    await currentUser!.reauthenticateWithCredential(cred).then((value){
-
-      //change pass
+  // Change auth password
+  changeAuthPassword({email, password, newPassword}) async {
+    final cred = EmailAuthProvider.credential(email: email, password: password);
+    await currentUser!.reauthenticateWithCredential(cred).then((value) {
       currentUser!.updatePassword(newPassword);
-    }).catchError((error){
-     // print(error..toString());
+    }).catchError((error) {
+      // Handle error
     });
-
   }
-
-
 
   // Image Picker
   pickImage() async {
     final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
-
     if (pickedFile != null) {
       profileImagePath.value = pickedFile.path;
     }
   }
 
-
-// upload and update img
+  // Upload and update profile image
   Future<void> uploadProfileImage(File image) async {
     try {
+      isloading2(true);
+
       final ref = FirebaseStorage.instance
           .ref()
           .child('profileImages')
           .child("${currentUser!.uid}.jpg");
+
       UploadTask uploadTask = ref.putFile(image);
       TaskSnapshot snapshot = await uploadTask;
 
       profileImageLink = await snapshot.ref.getDownloadURL();
 
-      // Save image URL to Firestore
       await fireFirestore.collection(userCollection).doc(currentUser!.uid).set({
         'imgUrl': profileImageLink,
       }, SetOptions(merge: true));
-      profileImagePath.value = ''; // Clear picked file
-      profileImagePath.refresh();
 
+      profileImagePath.value = '';
+      profileImagePath.refresh();
 
       Fluttertoast.showToast(msg: image_uploaded_successfully);
     } catch (e) {
       Fluttertoast.showToast(msg: image_upload_failed);
-
+    } finally {
+      isloading2(false);
     }
   }
-
-
-
-
 }

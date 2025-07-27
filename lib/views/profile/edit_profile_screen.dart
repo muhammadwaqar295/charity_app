@@ -86,18 +86,32 @@ class EditProfileScreen extends StatelessWidget {
 
               const SizedBox(height: 10),
 
-              ourButton(
-                title: uploadImage,
-                color: yellowColor,
-                textColor: whiteColor,
-                onPress: () async {
-                  if (controller.profileImagePath.value.isNotEmpty) {
-                    await controller.uploadProfileImage(File(controller.profileImagePath.value));
-                  } else {
-                    Fluttertoast.showToast(msg: please_select_an_image_first);
-                  }
-                },
-              ),
+
+              Obx(() {
+                return controller.isloading2.value
+                    ? const CircularProgressIndicator(color: yellowColor)
+                    : ourButton(
+                  title: uploadImage,
+                  color: yellowColor,
+                  textColor: whiteColor,
+                  onPress: () async {
+                    if (controller.profileImagePath.value.isEmpty) {
+                      Fluttertoast.showToast(msg: please_select_an_image_first);
+                      return;
+                    }
+                    controller.isloading2(true);
+                    try {
+                      await controller.uploadProfileImage(File(controller.profileImagePath.value));
+                      Fluttertoast.showToast(msg: image_uploaded_successfully);
+                    } catch (e) {
+                      Fluttertoast.showToast(msg: image_upload_failed);
+                    } finally {
+                      controller.isloading2(false);
+                    }
+                  },
+                );
+              }),
+
 
 
 
@@ -163,9 +177,8 @@ class EditProfileScreen extends StatelessWidget {
 
 
               const SizedBox(height: 30),
-
               // Edit Profile Button
-              ourButton(
+        /*      ourButton(
                 onPress: () async {
                   // Check if both old and new password fields are filled
                   if (controller.oldpassController.text.isEmpty ||
@@ -198,6 +211,50 @@ class EditProfileScreen extends StatelessWidget {
                 textColor: whiteColor,
                 title: save,
               ),
+*/
+
+    // Save Button with loading indicator
+    Obx(() {
+      return controller.isloadingSave.value
+          ? const CircularProgressIndicator(color: yellowColor)
+          : ourButton(
+        onPress: () async {
+          if (controller.oldpassController.text.isEmpty ||
+              controller.newpassController.text.isEmpty) {
+            Fluttertoast.showToast(
+                msg: please_enter_both_old_and_new_passwords);
+            return;
+          }
+
+          controller.isloadingSave(true);
+          try {
+            await controller.changeAuthPassword(
+              email: data['email'],
+              password: controller.oldpassController.text,
+              newPassword: controller.newpassController.text,
+            );
+
+            await controller.updateProfile(
+              password: controller.newpassController.text,
+            );
+
+            Fluttertoast.showToast(
+                msg: password_updated_successfully);
+
+            controller.oldpassController.clear();
+            controller.newpassController.clear();
+          } catch (e) {
+            Fluttertoast.showToast(
+                msg: wrong_old_password_or_error_occurred);
+          } finally {
+            controller.isloadingSave(false);
+          }
+        },
+        color: yellowColor,
+        textColor: whiteColor,
+        title: save,
+      );
+    })
             ],
           ),
         ),

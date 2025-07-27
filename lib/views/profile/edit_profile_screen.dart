@@ -1,14 +1,14 @@
+import 'dart:io';
 import 'package:charity_app/consts/consts.dart';
 import 'package:charity_app/consts/images.dart';
 import 'package:charity_app/reusable_widgets/our_back_button.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import 'package:charity_app/reusable_widgets/our_button.dart';
 import 'package:charity_app/reusable_widgets/our_textField.dart';
-import 'package:charity_app/reusable_widgets/profile_circle_avatar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-
 import '../../controllers/profile_edit_controller.dart';
+import '../../reusable_widgets/profile_circle_avatar.dart';
 
 class EditProfileScreen extends StatelessWidget {
 
@@ -20,7 +20,7 @@ class EditProfileScreen extends StatelessWidget {
 
     var controller = Get.put(ProfileEditController());
 
-    String imageUrl = data['imgUrl'] ?? imgProfile;
+
 
     return Scaffold(
       backgroundColor: whiteColor,
@@ -49,11 +49,60 @@ class EditProfileScreen extends StatelessWidget {
 
 
 
-              ourCircleAvatar(radius: 50,image: data['imgUrl']),
+              //ourCircleAvatar(radius: 50,image: data['imgUrl']),
+
+              Obx(() {
+                String? imageUrl;
+                if (controller.profileImagePath.value.isNotEmpty) {
+                  // Local file selected from gallery
+                  return GestureDetector(
+                    onTap: () async {
+                      await controller.pickImage();
+                    },
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage: FileImage(File(controller.profileImagePath.value)),
+                    ),
+                  );
+                } else {
+                  // Firebase image or fallback asset
+                  imageUrl = controller.profileImageLink.isNotEmpty
+                      ? controller.profileImageLink
+                      : (data['imgUrl'] ?? "");
+
+                  return GestureDetector(
+                    onTap: () async {
+                      await controller.pickImage();
+                    },
+                    child: ourCircleAvatar(
+                      radius: 50,
+                      image: imageUrl!.isNotEmpty ? imageUrl : imgProfile, // fallback to asset
+                      fallbackIcon: Icons.person,
+                    ),
+                  );
+                }
+              }),
+
+
+              const SizedBox(height: 10),
+
+              ourButton(
+                title: uploadImage,
+                color: yellowColor,
+                textColor: whiteColor,
+                onPress: () async {
+                  if (controller.profileImagePath.value.isNotEmpty) {
+                    await controller.uploadProfileImage(File(controller.profileImagePath.value));
+                  } else {
+                    Fluttertoast.showToast(msg: please_select_an_image_first);
+                  }
+                },
+              ),
+
+
 
 
               const SizedBox(height: 30),
-
               // Your Name
               Align(
                 alignment: Alignment.centerLeft,
@@ -109,7 +158,7 @@ class EditProfileScreen extends StatelessWidget {
                 isPass: false,
               ),
 
-              const SizedBox(height: 20),
+
 
 
 
@@ -124,7 +173,6 @@ class EditProfileScreen extends StatelessWidget {
                     Fluttertoast.showToast(msg: please_enter_both_old_and_new_passwords);
                     return;
                   }
-
                   try {
                     // Re-authenticate the user with their old password
                     await controller.changeAuthPassword(
@@ -132,14 +180,11 @@ class EditProfileScreen extends StatelessWidget {
                       password: controller.oldpassController.text,
                       newPassword: controller.newpassController.text,
                     );
-
                     // Optionally update password in Firestore (NOT RECOMMENDED FOR REAL APPS)
                     await controller.updateProfile(
                       password: controller.newpassController.text,
                     );
-
                     Fluttertoast.showToast(msg: password_updated_successfully);
-
                     // Clear text fields after success
                     controller.oldpassController.clear();
                     controller.newpassController.clear();
@@ -148,14 +193,7 @@ class EditProfileScreen extends StatelessWidget {
 
                   }
                 },
-
-
-
-
-
-
                 // Save profile logic
-
                 color: yellowColor,
                 textColor: whiteColor,
                 title: save,

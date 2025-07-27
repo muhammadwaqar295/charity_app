@@ -53,9 +53,18 @@ class ProfileScreen extends StatelessWidget {
                     var data = snapshot.data!.data() as Map<String, dynamic>;
                     String imageUrl = data['imgUrl'] ?? imgProfile;
 
+
                     return Column(
                       children: [
-                        ourCircleAvatar(radius: 50,image: imageUrl),
+
+                        ourCircleAvatar(
+                          radius: 50,
+                          image: (imageUrl.isNotEmpty && imageUrl.startsWith('http'))
+                              ? imageUrl
+                              : imgProfile,
+                        ),
+
+                        //ourCircleAvatar(radius: 50,image: imageUrl),
 
                         const SizedBox(height: 30),
                         profileInfoLabel(yourName),

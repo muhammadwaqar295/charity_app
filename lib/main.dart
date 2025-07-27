@@ -1,4 +1,5 @@
 import 'package:charity_app/views/splach_screen/splash_screen.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'consts/consts.dart';
@@ -8,7 +9,10 @@ void main()async {
   await Firebase.initializeApp(); // Initializes Firebase
 
 
-
+  await FirebaseAppCheck.instance.activate(
+    androidProvider: AndroidProvider.playIntegrity, // Or .safetyNet
+    appleProvider: AppleProvider.appAttest, // Optional for iOS
+  );
 
 
   runApp(const MyApp());

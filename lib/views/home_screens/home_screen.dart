@@ -127,11 +127,7 @@ class HomeScreen extends StatelessWidget {
               StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance.collection('donation_compaigns').snapshots(),
                 builder: (context, snapshot) {
-                  print("snapshot state 👉 ${snapshot.connectionState}");
-                  print("snapshot hasData 👉 ${snapshot.hasData}");
-                  print("snapshot hasError 👉 ${snapshot.hasError}");
-                  print("snapshot error 👉 ${snapshot.error}");
-                  print("docs count 👉 ${snapshot.data?.docs.length}");
+
 
                   if (snapshot.hasError) {
                     return Center(child: Text('Error: ${snapshot.error}'));
@@ -147,11 +143,10 @@ class HomeScreen extends StatelessWidget {
 
                   final campaigns = docs.map((doc) {
                     final data = doc.data() as Map<String, dynamic>;
-                    print("Campaign doc data 👉 $data");
                     return DonationCampaignModel.fromMap(data, doc.id);
                   }).toList();
 
-                  print("campaigns parsed 👉 ${campaigns.length}");
+
 
                   return GridView.builder(
                     shrinkWrap: true,

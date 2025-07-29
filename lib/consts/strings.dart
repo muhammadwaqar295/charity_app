@@ -3,10 +3,21 @@ const signup = "Sign up";
 const appName = "Sign up";
 const charity = "Charity";
 const signin = "Sign in";
+const admin_signin = "Admin Sign in";
 const email = "Email Address";
+const short_Des_Hint = "Enter Short Description";
+const days = "Days";
+const days_Hint = "Enter a Days";
+const amounta = "Amount";
+const amounta_Hint = "Enter the Amount";
+const short_Des = "Short Description";
+const long_Des = "Long Description";
+const long_Des_Hint = "Enter Long Description";
+const no_donation_campaigns_found = "No donation campaigns found.";
 const emailHint = "Enter email Address";
 const password = "Password";
 const passwordHint = "Enter Password";
+const title_Hint = "Enter Title";
 const forgetPassword = "Forget password";
 const type = "type";
 const donors = "Donars";
@@ -15,16 +26,20 @@ const name = "Full Name";
 const nameHint = "Enter Full Name";
 const phone = "Phone No.";
 const phoneHint = "Enter Phone No.";
-const becomeRequester = "Become a Requester";
+const registerRequester = "Register a Requester";
 const addDetails = "Add Details";
-const addDetailsHint = "Plz Add Details.";
+const addDetailsHint = "Add Full Details.";
 const submit = "Submit";
 const home = "Home";
+const edit = "Edit";
+const delete = "Delete";
 const history = "History";
 const profile = "Profile";
 const notification = "Notification";
 const nameAbbas = "Name: Abbas";
 const events = "Events";
+const no_events_found = "No events found.";
+const registered_Successfully = "Registered Successfully";
 
 
 const yourName = "Your Name";
@@ -52,6 +67,7 @@ const please_fill_all_fields= "Please fill all fields";
 const compin= "Compin";
 const changeImage= "Change";
 const ok= "Ok";
+const add_events= "Add Events";
 const paymentMethod= "Payment Method";
 const paymentWithStripe= "PAY WITH STRIPE";
 const creditCard= "Credit Card";
@@ -135,13 +151,17 @@ const ramazanPackage ="Ramazan Package";
 const eidPackage ="Eid Package";
 
 // notification Screen
-const title = "title";
+const title = "Title";
 const subtitle = "Subtitle";
 const notificationtime ="time";
 const stutus ="Stutus";
+const add_Images ="Add Images";
 const signup_successful ="Signup successful";
 const signup_failed_User_is_null ="Signup failed! User is null";
 const personalDetail ="Personal Support Approved";
 const personalSubDettails = "Your Personal Support request has been approved!";
 const minago="5 min ago ";
 const no_profile_data_found="No profile data found.";
+
+
+

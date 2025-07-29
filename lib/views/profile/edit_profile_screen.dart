@@ -221,8 +221,7 @@ class EditProfileScreen extends StatelessWidget {
         onPress: () async {
           if (controller.oldpassController.text.isEmpty ||
               controller.newpassController.text.isEmpty) {
-            Fluttertoast.showToast(
-                msg: please_enter_both_old_and_new_passwords);
+            Fluttertoast.showToast(msg: "Please enter both old and new passwords");
             return;
           }
 
@@ -234,22 +233,17 @@ class EditProfileScreen extends StatelessWidget {
               newPassword: controller.newpassController.text,
             );
 
-            await controller.updateProfile(
-              password: controller.newpassController.text,
-            );
-
-            Fluttertoast.showToast(
-                msg: password_updated_successfully);
+            Fluttertoast.showToast(msg: "Password updated successfully");
 
             controller.oldpassController.clear();
             controller.newpassController.clear();
           } catch (e) {
-            Fluttertoast.showToast(
-                msg: wrong_old_password_or_error_occurred);
+            // Error handled already inside changeAuthPassword
           } finally {
             controller.isloadingSave(false);
           }
         },
+
         color: yellowColor,
         textColor: whiteColor,
         title: save,

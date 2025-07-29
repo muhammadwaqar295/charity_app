@@ -4,7 +4,7 @@ import 'package:charity_app/reusable_widgets/our_button2.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import 'package:charity_app/reusable_widgets/our_textField.dart';
 import 'package:charity_app/views/authentication/login_screen.dart';
-import 'package:charity_app/views/authentication/signup_requester.dart';
+import 'package:charity_app/admin/signup_requester.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -81,16 +81,16 @@ class _SignupScreenState extends State<SignupScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           // User Type Selector
-                          Column(
+                          const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              ourText(
+                             /* ourText(
                                 color: textColor,
                                 title: type,
                                 textSize: 12,
-                              ),
-                              const SizedBox(height: 8),
-                              UserTypeSelector(
+                              ),*/
+                              SizedBox(height: 8),
+                           /*   UserTypeSelector(
                                 selectedUserType: selectedUserType,
                                 onSelectionChanged: (type) {
                                   setState(() {
@@ -101,7 +101,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                     Get.to(() => const SignupRequester());
                                   }
                                 },
-                              ),
+                              ),*/
                             ],
                           ),
 

@@ -38,8 +38,30 @@ class ProfileEditController extends GetxController {
     }
   }
 
+  Future<void> changeAuthPassword({
+    required String email,
+    required String password,
+    required String newPassword,
+  }) async {
+    try {
+      // Re-authenticate with old password
+      final cred = EmailAuthProvider.credential(email: email, password: password);
+      await currentUser!.reauthenticateWithCredential(cred);
 
-  // Change auth password
+      // If old password is correct, update the password
+      await currentUser!.updatePassword(newPassword);
+
+      Fluttertoast.showToast(msg: password_updated_successfully);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'wrong-password') {
+        Fluttertoast.showToast(msg: "Old password is incorrect");
+      } else {
+        Fluttertoast.showToast(msg: "Error: ${e.message}");
+      }
+      rethrow; // still throw to catch in the UI
+    }
+  }
+ /* // Change auth password
   changeAuthPassword({email, password, newPassword}) async {
     final cred = EmailAuthProvider.credential(email: email, password: password);
     await currentUser!.reauthenticateWithCredential(cred).then((value) {
@@ -47,7 +69,7 @@ class ProfileEditController extends GetxController {
     }).catchError((error) {
       // Handle error
     });
-  }
+  }*/
 
   // Image Picker
   pickImage() async {

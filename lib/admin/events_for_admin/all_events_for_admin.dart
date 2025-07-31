@@ -5,6 +5,7 @@ import 'package:charity_app/reusable_widgets/our_back_button.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import '../../views/events/components/event_model.dart';
 import 'add_events_screen.dart';
+import 'edit_events_screen.dart';
 
 class AllEventsForAdmin extends StatelessWidget {
   const AllEventsForAdmin({super.key});
@@ -101,7 +102,7 @@ class EventCard extends StatelessWidget {
                     onSelected: (value) {
                       if (value == edit) {
                         // TODO: Navigate to EditEventScreen
-                        // Get.to(() => EditEventScreen(event: event));
+                         Get.to(() => EditEventScreen(event: event));
                       } else if (value == delete) {
                         _deleteEvent(context);
                       }

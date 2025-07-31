@@ -20,7 +20,7 @@ class RequesterRegisterController extends GetxController{
   var rLongDesController=TextEditingController();
 
 
-  var rImagesLinks=[];// it imgs links
+  var rImagesLinks = <String>[];// it imgs links
   var rImagesList=RxList<dynamic>.generate(3, (index)=>null);
 
 

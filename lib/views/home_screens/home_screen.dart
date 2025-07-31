@@ -263,9 +263,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-}
-
-class DonationCampaignModel {
+}class DonationCampaignModel {
   final String id;
   final String title;
   final String shortDescription;
@@ -283,10 +281,20 @@ class DonationCampaignModel {
     required this.needyName,
     required this.needAmount,
     required this.daysLeft,
-    required this.imageUrls,
-  });
+    List<String>? imageUrls, // optional in constructor
+  }) : imageUrls = imageUrls ?? []; // default to empty list
 
   factory DonationCampaignModel.fromMap(Map<String, dynamic> data, String docId) {
+    List<String> imageList;
+
+    if (data['image'] is List) {
+      imageList = List<String>.from(data['image']);
+    } else if (data['image'] is String) {
+      imageList = [data['image']];
+    } else {
+      imageList = [];
+    }
+
     return DonationCampaignModel(
       id: docId,
       title: data['title'] ?? '',
@@ -295,7 +303,7 @@ class DonationCampaignModel {
       needyName: data['needy_name'] ?? '',
       needAmount: data['need_amount'] ?? '',
       daysLeft: int.tryParse(data['days_left']?.toString() ?? '0') ?? 0,
-      imageUrls: List<String>.from(data['image'] ?? []),
+      imageUrls: imageList,
     );
   }
 }

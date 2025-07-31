@@ -4,7 +4,7 @@ import 'package:charity_app/reusable_widgets/our_button2.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import 'package:charity_app/reusable_widgets/our_textField.dart';
 import 'package:charity_app/views/authentication/login_screen.dart';
-import 'package:charity_app/admin/signup_requester.dart';
+import 'package:charity_app/admin/persons_for_admin/signup_requester.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';

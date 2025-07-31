@@ -3,11 +3,11 @@ import 'package:charity_app/reusable_widgets/our_back_button.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import '../controllers/event_register_controller.dart';
-import '../reusable_widgets/our_button.dart';
-import '../reusable_widgets/our_multi_line_textfield.dart';
-import '../reusable_widgets/our_textField.dart';
-import '../reusable_widgets/requester_imgs.dart';
+import '../../controllers/event_register_controller.dart';
+import '../../reusable_widgets/our_button.dart';
+import '../../reusable_widgets/our_multi_line_textfield.dart';
+import '../../reusable_widgets/our_textField.dart';
+import '../../reusable_widgets/requester_imgs.dart';
 
 
 class AddEventsScreen extends StatelessWidget {

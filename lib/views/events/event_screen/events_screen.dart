@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:charity_app/consts/consts.dart';
 import 'package:charity_app/reusable_widgets/our_back_button.dart';
@@ -35,7 +34,9 @@ class EventsScreen extends StatelessWidget {
           final docs = snapshot.data!.docs;
 
           final List<EventModel> events = docs.map((doc) {
-            return EventModel.fromMap(doc.data() as Map<String, dynamic>);
+            final data = doc.data() as Map<String, dynamic>;
+            data['id'] = doc.id; // inject the ID
+            return EventModel.fromMap(data);
           }).toList();
 
           return ListView.builder(

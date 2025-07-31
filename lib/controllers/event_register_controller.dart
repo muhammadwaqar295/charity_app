@@ -56,15 +56,19 @@ class EventsRegisterController extends GetxController{
       }
     }
   }
-  uploadProducts(context) async {
+
+
+  uploadProducts(BuildContext context) async {
     try {
-      var store = fireFirestore.collection('events').doc();
+      var store = fireFirestore.collection('events').doc(); // create doc ref
+
       await store.set({
+        'id': store.id, // ✅ use store.id here
         'title': titleController.text,
         'des': desController.text,
         'images': rImagesLinks,
-        'created_at': FieldValue.serverTimestamp(), // Firestore server time
-        'created_date': DateFormat('dd MMMM yyyy').format(DateTime.now()), // Human-readable date
+        'created_at': FieldValue.serverTimestamp(), // ✅ accurate timestamp
+        'created_date': DateFormat('dd MMMM yyyy').format(DateTime.now()), // readable date
       });
 
       isloading(false);
@@ -72,9 +76,9 @@ class EventsRegisterController extends GetxController{
     } catch (e) {
       isloading(false);
       Fluttertoast.showToast(msg: "Error: $e");
-
     }
   }
+
 
 
 

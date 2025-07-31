@@ -20,6 +20,7 @@ const passwordHint = "Enter Password";
 const title_Hint = "Enter Title";
 const forgetPassword = "Forget password";
 const type = "type";
+const edit_Campaign = "Edit Campaign";
 const donors = "Donars";
 const requester = "Requester";
 const name = "Full Name";

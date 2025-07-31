@@ -1,4 +1,4 @@
-import 'package:charity_app/admin/all_persons_for_admin.dart';
+
 import 'package:charity_app/controllers/auth_controller.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -6,6 +6,7 @@ import '../../consts/consts.dart';
 import '../../reusable_widgets/our_button.dart';
 import '../../reusable_widgets/our_text.dart';
 import '../../reusable_widgets/our_textField.dart';
+import 'admin_home.dart';
 
 class AdminLoginScreen extends StatelessWidget {
   const AdminLoginScreen({super.key});
@@ -105,7 +106,7 @@ class AdminLoginScreen extends StatelessWidget {
                                       msg: "Admin Login Successful ",
                                       backgroundColor: Colors.green,
                                     );
-                                    Get.offAll(() => const AllPersonsForAdmin()); // Admin Home
+                                    Get.offAll(() => const AdminHome()); // Admin Home
                                   } else {
                                     Fluttertoast.showToast(
                                       msg: "Access Denied  Not an admin",

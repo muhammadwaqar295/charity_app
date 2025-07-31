@@ -1,11 +1,12 @@
 import 'package:charity_app/consts/consts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import '../reusable_widgets/our_text.dart';
+import '../../reusable_widgets/our_text.dart';
+import 'edit_person_details.dart';
 import 'signup_requester.dart';
-import '../views/donation/donation_details_screen.dart';
-import '../views/home_screens/home_screen.dart';
-import 'add_events_screen.dart';
+import '../../views/donation/donation_details_screen.dart';
+import '../../views/home_screens/home_screen.dart';
+
 
 
 class AllPersonsForAdmin extends StatelessWidget {
@@ -16,46 +17,12 @@ class AllPersonsForAdmin extends StatelessWidget {
     return Scaffold(
       floatingActionButton: SafeArea(
         child: FloatingActionButton(
-          backgroundColor: yellowColor,
-          onPressed: () {
-            showModalBottomSheet(
-              context: context,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-              ),
-                builder: (context) {
-                  return SafeArea(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ListTile(
-                            leading: const Icon(Icons.person_add),
-                            title: const Text("Add Requester"),
-                            onTap: () {
-                              Navigator.pop(context);
-                              Get.to(() => const SignupRequester());
-                            },
-                          ),
-                          ListTile(
-                            leading: const Icon(Icons.event),
-                            title: const Text("Add Events"),
-                            onTap: () {
-                              Navigator.pop(context);
-                              Get.to(() => const AddEventsScreen());
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                }
-
-            );
-          },
-          child: const Icon(Icons.add, color: whiteColor),
-        ),
+        backgroundColor: yellowColor,
+        onPressed: (){
+          
+          Get.to(()=>const SignupRequester());
+        
+        },child: const Icon(Icons.add,color: Colors.white,),),
       ),
 
 
@@ -101,7 +68,9 @@ class AllPersonsForAdmin extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final campaign = campaigns[index];
                         return GestureDetector(
-                          onTap: () => Get.to(() => DonationDetailsScreen(campaign: campaign)),
+                          onTap:(){
+                           // Get.to(() => DonationDetailsScreen(campaign: campaign));
+                          },
                           child: Stack(
                             children: [
                               Column(
@@ -150,7 +119,8 @@ class AllPersonsForAdmin extends StatelessWidget {
                                   onSelected: (value) async {
                                     if (value == edit) {
                                       // Navigate to edit screen (you should create this)
-                                      // Get.to(() => EditCampaignScreen(campaign: campaign));
+
+                                      Get.to(() => EditPersonDetailScreen(campaign: campaign));
                                     } else if (value == delete) {
                                       // Delete the document from Firestore
                                       await FirebaseFirestore.instance

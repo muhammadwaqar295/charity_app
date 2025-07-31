@@ -8,7 +8,7 @@ import 'package:charity_app/reusable_widgets/requester_imgs.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
-import '../consts/consts.dart';
+import '../../consts/consts.dart';
 
 class SignupRequester extends StatefulWidget {
   const SignupRequester({super.key});

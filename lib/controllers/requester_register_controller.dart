@@ -62,9 +62,35 @@ class RequesterRegisterController extends GetxController{
     }
   }
 
-
-
   uploadProducts(context) async {
+    try {
+      isloading(true);
+      await uploadImages(); // Step 1: upload images first
+
+      var store = fireFirestore.collection('donation_compaigns').doc(); // Step 2: create doc reference
+      await store.set({
+        'days_left': rDaysController.text,
+        'full_description': rLongDesController.text,
+        'need_amount': rAmountController.text,
+        'needy_name': rNameController.text,
+        'short_description': rShortDesController.text,
+        'title': rTitleController.text,
+        'image': rImagesLinks,
+        'created_at': DateTime.now(),
+      });
+
+      await saveNotificationToFirestore(store.id); // Step 3 & 4
+
+      isloading(false);
+      Fluttertoast.showToast(msg: registered_Successfully);
+    } catch (e) {
+      isloading(false);
+      Fluttertoast.showToast(msg: "Error: $e");
+    }
+  }
+
+
+/*  uploadProducts(context) async {
     try {
       var store = fireFirestore.collection('donation_compaigns').doc();
       await store.set({
@@ -84,8 +110,8 @@ class RequesterRegisterController extends GetxController{
       Fluttertoast.showToast(msg: "Error: $e");
      // print("Upload error: $e");
     }
-  }
-  Future<void> saveNotificationToFirestore() async {
+  }*/
+/*  Future<void> saveNotificationToFirestore() async {
     try {
       await FirebaseFirestore.instance.collection('notifications').add({
         'title': rTitleController.text,
@@ -93,12 +119,27 @@ class RequesterRegisterController extends GetxController{
         'time': DateTime.now(),
         'status': 'approved', // You can use pending/approved/etc.
         'isRead': false,
+
+      });
+    } catch (e) {
+      debugPrint('Error saving notification: $e');
+    }
+  }*/
+
+  Future<void> saveNotificationToFirestore(String campaignId) async {
+    try {
+      await FirebaseFirestore.instance.collection('notifications').add({
+        'title': rTitleController.text,
+        'subtitle': rShortDesController.text,
+        'time': DateTime.now(),
+        'status': 'approved',
+        'isRead': false,
+        'donationId': campaignId, // ✅ VERY IMPORTANT
       });
     } catch (e) {
       debugPrint('Error saving notification: $e');
     }
   }
-
 
 
 

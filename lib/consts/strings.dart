@@ -22,6 +22,7 @@ const forgetPassword = "Forget password";
 const type = "type";
 const edit_Campaign = "Edit Campaign";
 const donors = "Donars";
+const no_notifications_found = "No notifications found.";
 const edit_Event = "Edit Event";
 const requester = "Requester";
 const name = "Full Name";

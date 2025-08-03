@@ -160,8 +160,8 @@ var controller=Get.put(RequesterRegisterController());
                       Get.back();
 
 
-                      // ✅ Add this function to save a new notification
-                      await controller.saveNotificationToFirestore();
+
+
                     },
                     color: yellowColor,
                     textColor: whiteColor,

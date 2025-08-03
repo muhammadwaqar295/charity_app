@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
 
                 // PROFILE text
                 ourText(
-                  color: blackColor,
+                  color: yellowColor,
                   title: profile,
                   textSize: 22,
                 ),

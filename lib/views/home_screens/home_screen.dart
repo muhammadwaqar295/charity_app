@@ -3,9 +3,9 @@ import 'package:charity_app/consts/images.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import 'package:charity_app/reusable_widgets/profile_circle_avatar.dart';
 import 'package:charity_app/views/donation/donate_cloth_screen.dart';
+import 'package:charity_app/views/donation/donate_construction_material_screen.dart';
 import 'package:charity_app/views/donation/donate_food_screen.dart';
 import 'package:charity_app/views/donation/donate_for_construction_screen.dart';
-import 'package:charity_app/views/donation/donate_for_medical_screen.dart';
 import 'package:charity_app/views/donation/donation_details_screen.dart';
 import 'package:charity_app/views/home_screens/components/MenuBarPage.dart';
 import 'package:charity_app/views/notificatons/notification_screen.dart';
@@ -14,6 +14,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import '../../consts/firebase_const.dart';
 import '../../services/firestore_services.dart';
+import '../donation/donate_medicain_screen.dart';
 import 'components/category_items.dart';
 import 'components/spacial_event_compaigns.dart';
 
@@ -285,8 +286,8 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     categoryItem(imgFood, food,()=>Get.to(()=>const FoodDonationScreen())),
                     categoryItem(imgCloth, clothing,()=>Get.to(()=>const DonateClothScreen())),
-                    categoryItem(imgMedical, medical,()=>Get.to(()=>const DonateForMedicalScreen())),
-                    categoryItem(imgConstruction, shelter,()=>Get.to(()=>const DonateForConstructionScreen())),
+                    categoryItem(imgMedical, medical,()=>Get.to(()=>const DonateMedicineScreen())),
+                    categoryItem(imgConstruction, shelter,()=>Get.to(()=>const DonateConstructionMaterialScreen())),
                   ],
                 ),
               ),

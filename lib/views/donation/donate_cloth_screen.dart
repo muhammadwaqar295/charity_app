@@ -12,6 +12,13 @@ class DonateClothScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: yellowColor,
+        centerTitle: true,
+        leading: ourBackButton(context),
+        title: ourText(color: whiteColor, title: clothDonation, textSize: 22),
+
+      ),
       backgroundColor:whiteColor,
       body: SafeArea(
         child: Padding(
@@ -20,13 +27,6 @@ class DonateClothScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Back Button
-                Align(
-                    alignment: Alignment.topLeft,
-                    child: ourBackButton(context)
-
-
-                ),
                 const SizedBox(height: 12),
 
                 // Add Food Items Field

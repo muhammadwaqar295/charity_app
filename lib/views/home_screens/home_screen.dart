@@ -12,7 +12,6 @@ import 'package:charity_app/views/notificatons/notification_screen.dart';
 import 'package:charity_app/views/profile/profile_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-
 import '../../consts/firebase_const.dart';
 import '../../services/firestore_services.dart';
 import 'components/category_items.dart';
@@ -47,11 +46,46 @@ class HomeScreen extends StatelessWidget {
 
                   Row(
                     children: [
-                      GestureDetector(child: ourCircleAvatar(radius: 18,fallbackIcon: Icons.notifications_none),
+                   /*   GestureDetector(child: ourCircleAvatar(radius: 18,fallbackIcon: Icons.notifications_none),
                       onTap: (){
                         Get.to(()=>NotificationScreen());
                       },),
+*/
+                      Stack(
+                        children: [
+                          GestureDetector(
+                            onTap: () => Get.to(() => NotificationScreen()),
+                            child: ourCircleAvatar(radius: 18, fallbackIcon: Icons.notifications_none),
+                          ),
 
+                          // 🔴 Notification count
+                          Positioned(
+                            right: 0,
+                            child: StreamBuilder<QuerySnapshot>(
+                              stream: FirebaseFirestore.instance
+                                  .collection('notifications')
+                                  .where('isRead', isEqualTo: false)
+                                  .snapshots(),
+                              builder: (context, snapshot) {
+                                if (!snapshot.hasData || snapshot.data!.docs.isEmpty) return const SizedBox();
+
+                                final count = snapshot.data!.docs.length;
+                                return Container(
+                                  padding: const EdgeInsets.all(4),
+                                  decoration: const BoxDecoration(
+                                    color: Colors.red,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Text(
+                                    count.toString(),
+                                    style: const TextStyle(color: Colors.white, fontSize: 10),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
 
                       const SizedBox(width: 8),
 

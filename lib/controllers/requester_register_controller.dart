@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -84,6 +85,20 @@ class RequesterRegisterController extends GetxController{
      // print("Upload error: $e");
     }
   }
+  Future<void> saveNotificationToFirestore() async {
+    try {
+      await FirebaseFirestore.instance.collection('notifications').add({
+        'title': rTitleController.text,
+        'short_description': rShortDesController.text,
+        'time': DateTime.now(),
+        'status': 'approved', // You can use pending/approved/etc.
+        'isRead': false,
+      });
+    } catch (e) {
+      debugPrint('Error saving notification: $e');
+    }
+  }
+
 
 
 

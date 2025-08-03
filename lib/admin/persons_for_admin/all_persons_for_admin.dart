@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../reusable_widgets/our_text.dart';
 import 'edit_person_details.dart';
 import 'signup_requester.dart';
-import '../../views/donation/donation_details_screen.dart';
+
 import '../../views/home_screens/home_screen.dart';
 
 
@@ -15,6 +15,12 @@ class AllPersonsForAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: yellowColor,
+        centerTitle: true,
+        title: ourText(color: blackColor, title: "All Needy Person", textSize: 17),
+
+      ),
       floatingActionButton: SafeArea(
         child: FloatingActionButton(
         backgroundColor: yellowColor,

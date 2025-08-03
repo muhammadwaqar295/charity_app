@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:charity_app/consts/consts.dart';
-import 'package:charity_app/reusable_widgets/our_back_button.dart';
 import 'package:charity_app/reusable_widgets/our_text.dart';
 import '../../views/events/components/event_model.dart';
 import 'add_events_screen.dart';
@@ -14,9 +13,10 @@ class AllEventsForAdmin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: yellowColor,
         centerTitle: true,
         title: ourText(color: blackColor, title: eventss, textSize: 17),
-        leading: ourBackButton(context),
+
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
@@ -55,7 +55,7 @@ class AllEventsForAdmin extends StatelessWidget {
           Get.to(() => const AddEventsScreen());
         },
         backgroundColor: yellowColor,
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add,color: whiteColor,),
       ),
     );
   }

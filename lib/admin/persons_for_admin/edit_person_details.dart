@@ -1,3 +1,4 @@
+import 'package:charity_app/reusable_widgets/our_button.dart';
 import 'package:charity_app/reusable_widgets/our_multi_line_textfield.dart';
 import 'package:charity_app/reusable_widgets/our_textField.dart';
 import 'package:get/get.dart';
@@ -104,15 +105,17 @@ class EditPersonDetailScreen extends StatelessWidget {
 
             Center(
               child: Obx(() =>
-                  ElevatedButton(
 
-                    onPressed: controller.isLoading.value
-                        ? null
-                        : controller.updateCampaign,
-                    child: controller.isLoading.value
-                        ? const CircularProgressIndicator(color: Colors.white)
-                        : const Text('Update'),
-                  )
+              controller.isLoading.value
+                  ? const CircularProgressIndicator()
+
+                  : ourButton(
+                onPress: controller.updateCampaign,
+                color: yellowColor,
+                textColor: whiteColor,
+                title: "Update",
+              )
+
 
               ),
             ),

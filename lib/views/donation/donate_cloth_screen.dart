@@ -1,5 +1,6 @@
 import 'package:charity_app/consts/consts.dart';
 import 'package:get/get.dart';
+import '../../controllers/item_donation_controller.dart';
 import '../../reusable_widgets/our_back_button.dart';
 import '../../reusable_widgets/our_button.dart';
 import '../../reusable_widgets/our_multi_line_textfield.dart';
@@ -11,6 +12,11 @@ class DonateClothScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final donationController = Get.put(ItemDonationController());
+
+
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: yellowColor,
@@ -35,53 +41,85 @@ class DonateClothScreen extends StatelessWidget {
 
                 const SizedBox(height: 8),
 
-                ourTextField(title:addCloths  ,hint: addClothItems,isPass: false),
+                ourTextField(
+                  title: addCloths,
+                  hint: addClothItems,
+                  isPass: false,
+                  controller: donationController.titleController,
+                ),
 
+                const SizedBox(height: 13),
 
-                const SizedBox(height: 20),
-
-                // Add Time Field
-                ourText(color: blackColor, title: availabilityTime, textSize: 16),
-
+                ourText(color: blackColor, title: add_address, textSize: 16),
 
                 const SizedBox(height: 8),
 
-                ourTextField(title:addTime  ,hint: availabilityTime,isPass: false),
+                ourTextField(
+                  title: add_address,
+                  hint: plz_add_yor_address,
+                  isPass: false,
+                  controller: donationController.addressController,
+                ),
 
+                const SizedBox(height: 13),
+
+                ourText(color: blackColor, title: availabilityTime, textSize: 16),
+                const SizedBox(height: 8),
+                // Add Time Field
+                ourTextField(
+                  title: addTime,
+                  hint: availabilityTime,
+                  isPass: false,
+                  controller: donationController.timeController,
+                ),
+
+                const SizedBox(height: 13),
+
+                ourText(color: blackColor, title: description, textSize: 16),
+                const SizedBox(height: 8),
+                ourMultilineTextField(
+                  title: addDescription,
+                  hint: addDescription,
+                  controller: donationController.descriptionController,
+                ),
                 const SizedBox(height: 20),
 
                 // Description Field
 
-                ourText(color: blackColor, title: description, textSize: 16),
 
-                const SizedBox(height: 8),
 
-                ourMultilineTextField(title:addDescription  ,hint: addDescription,),
 
-                const SizedBox(height: 40),
+
+
 
                 // Donate Now Button
                 SizedBox(
                   width: double.infinity,
                   child: ourButton(
-                      onPress: (){},
-                      color: yellowColor,
-                      textColor: textColor,
-                      title: donateNow),
+                    onPress: () => donationController.addDonation(type: 'cloth'),
+                    color: yellowColor,
+                    textColor: textColor,
+                    title: donateNow,
+                  ),
                 ),
                 const SizedBox(height: 16),
 
                 // Cancel Button
                 SizedBox(
+
+
+
+
+
                   width: double.infinity,
-                  child:
-                  ourButton(
+                  child:   ourButton(
                       onPress: (){
                         Get.back();
                       },
                       color: yellowColor,
                       textColor: textColor,
                       title: cancel),
+
 
                 ),
               ],

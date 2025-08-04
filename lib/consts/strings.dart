@@ -105,6 +105,7 @@ const eventsss= "Event Screen:";
 
 const admin= "Admin";
 const donate= "Donate:";
+const add_address= "Add Address:";
 const amountP= "Amount:";
 const cancel= "Cancel";
 const addFoodItems= "Add Food Items";
@@ -113,6 +114,8 @@ const addCloths= "Add Cloths";
 const addMedicine= "Add Medicine";
 const addConstructionMaterial= "Add Construction Material";
 const addClothItems= "Add Cloth Items";
+const donation_Added_Successfully= "Donation Added Successfully";
+const plz_add_yor_address= "plz add your address";
 const addMedicineItem= "Add Medicine Items";
 const addConstructionItem= "Add Construction Items";
 const addTime= "Add Time";

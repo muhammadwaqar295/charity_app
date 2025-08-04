@@ -3,6 +3,7 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'consts/consts.dart';
+import 'controllers/item_donation_controller.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensures bindings are initialized
@@ -14,7 +15,7 @@ void main()async {
     appleProvider: AppleProvider.appAttest, // Optional for iOS
   );
 
-
+  Get.put(ItemDonationController());
   runApp(const MyApp());
 }
 

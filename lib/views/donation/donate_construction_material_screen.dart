@@ -1,5 +1,6 @@
 import 'package:charity_app/consts/consts.dart';
 import 'package:get/get.dart';
+import '../../controllers/item_donation_controller.dart';
 import '../../reusable_widgets/our_back_button.dart';
 import '../../reusable_widgets/our_button.dart';
 import '../../reusable_widgets/our_multi_line_textfield.dart';
@@ -11,6 +12,9 @@ class DonateConstructionMaterialScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final donationController = Get.find<ItemDonationController>();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: yellowColor,
@@ -28,7 +32,7 @@ class DonateConstructionMaterialScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                const SizedBox(height: 12),
+                const SizedBox(height: 8),
 
                 // Add Food Items Field
 
@@ -36,10 +40,29 @@ class DonateConstructionMaterialScreen extends StatelessWidget {
 
                 const SizedBox(height: 8),
 
-                ourTextField(title:addConstructionMaterial  ,hint: addConstructionItem,isPass: false),
+                ourTextField(
+                  title: addConstructionMaterial,
+                  hint: addConstructionItem,
+                  isPass: false,
+                  controller: donationController.titleController,
+                ),
+                const SizedBox(height: 13),
+
+                ourText(color: blackColor, title: add_address, textSize: 16),
+
+                const SizedBox(height: 8),
+
+                ourTextField(
+                  title: add_address,
+                  hint: plz_add_yor_address,
+                  isPass: false,
+                  controller: donationController.addressController,
+                ),
+
+               // ourTextField(title:addConstructionMaterial  ,hint: addConstructionItem,isPass: false),
 
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 13),
 
                 // Add Time Field
                 ourText(color: blackColor, title: availabilityTime, textSize: 16),
@@ -47,9 +70,15 @@ class DonateConstructionMaterialScreen extends StatelessWidget {
 
                 const SizedBox(height: 8),
 
-                ourTextField(title:addTime  ,hint: availabilityTime,isPass: false),
+                ourTextField(
+                  title: addTime,
+                  hint: availabilityTime,
+                  isPass: false,
+                  controller: donationController.timeController,
+                ),
+                //ourTextField(title:addTime  ,hint: availabilityTime,isPass: false),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 13),
 
                 // Description Field
 
@@ -57,18 +86,25 @@ class DonateConstructionMaterialScreen extends StatelessWidget {
 
                 const SizedBox(height: 8),
 
-                ourMultilineTextField(title:addDescription  ,hint: addDescription,),
+                ourMultilineTextField(
+                  title: addDescription,
+                  hint: addDescription,
+                  controller: donationController.descriptionController,
+                ),
 
-                const SizedBox(height: 40),
+                //ourMultilineTextField(title:addDescription  ,hint: addDescription,),
+
+                const SizedBox(height: 20),
 
                 // Donate Now Button
                 SizedBox(
                   width: double.infinity,
-                  child: ourButton(
-                      onPress: (){},
-                      color: yellowColor,
-                      textColor: textColor,
-                      title: donateNow),
+                  child:ourButton(
+                    onPress: () => donationController.addDonation(type: 'construction'),
+                    color: yellowColor,
+                    textColor: textColor,
+                    title: donateNow,
+                  ),
                 ),
                 const SizedBox(height: 16),
 

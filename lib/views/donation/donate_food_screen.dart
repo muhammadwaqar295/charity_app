@@ -8,13 +8,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
-import '../../consts/strings.dart'; 
+import '../../consts/strings.dart';
+import '../../controllers/item_donation_controller.dart';
 
 class FoodDonationScreen extends StatelessWidget {
   const FoodDonationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    final donationController = Get.find<ItemDonationController>();
+
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: yellowColor,
@@ -40,40 +45,72 @@ class FoodDonationScreen extends StatelessWidget {
                 ourText(color: blackColor, title: addFoodItems, textSize: 16),
             
                 const SizedBox(height: 8),
-            
-                ourTextField(title:addFoods  ,hint: addFoodItems,isPass: false),
-            
-            
-                const SizedBox(height: 20),
+                ourTextField(
+                  title: addFoods,
+                  hint: addFoodItems,
+                  isPass: false,
+                  controller: donationController.titleController,
+                ),
+
+               // ourTextField(title:addFoods  ,hint: addFoodItems,isPass: false),
+
+                const SizedBox(height: 13),
+
+                ourText(color: blackColor, title: add_address, textSize: 16),
+
+                const SizedBox(height: 8),
+
+                ourTextField(
+                  title: add_address,
+                  hint: plz_add_yor_address,
+                  isPass: false,
+                  controller: donationController.addressController,
+                ),
+
+
+
+                const SizedBox(height: 13),
             
                 // Add Time Field
+
                 ourText(color: blackColor, title: availabilityTime, textSize: 16),
             
             
                 const SizedBox(height: 8),
+                ourTextField(
+                  title: addTime,
+                  hint: availabilityTime,
+                  isPass: false,
+                  controller: donationController.timeController,
+                ),
+              //  ourTextField(title:addTime  ,hint: availabilityTime,isPass: false),
             
-                ourTextField(title:addTime  ,hint: availabilityTime,isPass: false),
-            
-                const SizedBox(height: 20),
+                const SizedBox(height: 13),
             
                 // Description Field
             
                 ourText(color: blackColor, title: description, textSize: 16),
             
                 const SizedBox(height: 8),
+                ourMultilineTextField(
+                  title: addDescription,
+                  hint: addDescription,
+                  controller: donationController.descriptionController,
+                ),
+                //ourMultilineTextField(title:addDescription  ,hint: addDescription,),
             
-                ourMultilineTextField(title:addDescription  ,hint: addDescription,),
-            
-                const SizedBox(height: 40),
+                const SizedBox(height: 20),
             
                 // Donate Now Button
                 SizedBox(
                   width: double.infinity,
-                  child: ourButton(
-                      onPress: (){},
-                      color: yellowColor,
-                      textColor: textColor,
-                      title: donateNow),
+                  child:ourButton(
+                    onPress: () => donationController.addDonation(type: 'food'),
+                    color: yellowColor,
+                    textColor: textColor,
+                    title: donateNow,
+                  ),
+
                 ),
                 const SizedBox(height: 16),
             

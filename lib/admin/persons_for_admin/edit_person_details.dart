@@ -33,7 +33,7 @@ class EditPersonDetailScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: yellowColor,
         centerTitle: true,
-        title: ourText(color: blackColor, title: edit_Campaign, textSize: 17),
+        title: ourText(color: whiteColor, title: edit_Campaign, textSize: 22),
         leading: ourBackButton(context),
 
       ),
@@ -113,7 +113,7 @@ class EditPersonDetailScreen extends StatelessWidget {
                 onPress: controller.updateCampaign,
                 color: yellowColor,
                 textColor: whiteColor,
-                title: "Update",
+                title: update,
               )
 
 

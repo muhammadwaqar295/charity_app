@@ -15,7 +15,7 @@ class AllEventsForAdmin extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: yellowColor,
         centerTitle: true,
-        title: ourText(color: blackColor, title: eventss, textSize: 17),
+        title: ourText(color: whiteColor, title: eventss, textSize: 22),
 
       ),
       body: StreamBuilder(
@@ -146,7 +146,7 @@ class EventCard extends StatelessWidget {
     try {
       await FirebaseFirestore.instance.collection('events').doc(event.id).delete();
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Event deleted successfully')),
+        const SnackBar(content: Text(eventdeletedsuccessfully)),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(

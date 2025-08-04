@@ -22,8 +22,9 @@ class AddEventsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: yellowColor,
         elevation: 0,
+        centerTitle: true,
         leading: ourBackButton(context,iconColor: blackColor),
-        title: ourText(color: blackColor, title: add_events, textSize: 20),
+        title: ourText(color: whiteColor, title: add_events, textSize: 22),
       ),
       body: SafeArea(
           child: SingleChildScrollView(

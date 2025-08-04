@@ -18,7 +18,7 @@ class AllPersonsForAdmin extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: yellowColor,
         centerTitle: true,
-        title: ourText(color: blackColor, title: "All Needy Person", textSize: 17),
+        title: ourText(color: whiteColor, title: allNeedyPerson, textSize: 22),
 
       ),
       floatingActionButton: SafeArea(

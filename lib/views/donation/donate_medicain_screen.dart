@@ -97,7 +97,7 @@ class DonateMedicineScreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child:ourButton(
-                    onPress: () => donationController.addDonation(type: 'medicine'),
+                    onPress: () => donationController.addDonation(type: 'Medicine'),
                     color: yellowColor,
                     textColor: textColor,
                     title: donateNow,

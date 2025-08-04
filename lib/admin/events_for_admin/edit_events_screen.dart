@@ -22,10 +22,11 @@ class EditEventScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: yellowColor,
         elevation: 0,
         leading: ourBackButton(context, iconColor: blackColor),
-        title: ourText(color: blackColor, title: edit_Event, textSize: 20),
+        title: ourText(color: whiteColor, title: edit_Event, textSize: 20),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

@@ -28,14 +28,11 @@ var controller=Get.put(RequesterRegisterController());
       appBar: AppBar(
         backgroundColor: yellowColor,
         elevation: 0,
-
         leading:ourBackButton(context,iconColor: blackColor),
-
-
         title: ourText(
-            color: blackColor,
+            color: whiteColor,
             title: registerRequester,
-            textSize: 20)
+            textSize: 22)
       ),
       body: SafeArea(
         child: SingleChildScrollView(

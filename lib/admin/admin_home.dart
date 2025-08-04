@@ -26,7 +26,7 @@ class AdminHome extends StatelessWidget {
     var navItems = [
       const Icon(Icons.person,color: Colors.white,),
       const Icon(Icons.event,color: Colors.white,),
-      const Icon(Icons.favorite,color: Colors.white,),
+      const Icon(Icons.local_shipping,color: Colors.white,),
 
     ];
 

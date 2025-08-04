@@ -35,6 +35,7 @@ class ItemDonationController extends GetxController {
         'description': descriptionController.text,
         'address': addressController.text,
         'type': type,
+        'timestamp': Timestamp.now(),
       });
 
       Get.back();

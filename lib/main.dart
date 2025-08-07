@@ -1,6 +1,7 @@
 import 'package:charity_app/views/splach_screen/splash_screen.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'consts/consts.dart';
 import 'controllers/item_donation_controller.dart';
@@ -15,6 +16,12 @@ void main()async {
     appleProvider: AppleProvider.appAttest, // Optional for iOS
   );
 
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Stripe.publishableKey = 'publishableKey';
+
+  await Stripe.instance.applySettings();
   Get.put(ItemDonationController());
   runApp(const MyApp());
 }
